@@ -9,19 +9,19 @@
     <meta name="keywords" content="木庄网络博客,IT技术,网络推广,编程技术,网站模板,SEO优化" />
     <meta name="description" content="木庄网络博客，互联网创业浪潮中关注IT技术、站长、网络推广等资讯以及技术的记录与分享。" />
     <meta http-equiv="windows-Target " content="_top " />
-    <link rel="stylesheet" type="text/css" href="templates/blog/css/bootstrap.min.css" tppabs="templates/blog/css/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" href="templates/blog/css/nprogress.css" tppabs="templates/blog/css/nprogress.css">
-    <link rel="stylesheet" type="text/css" href="templates/blog/css/style.css" tppabs="templates/blog/css/style.css">
-    <link rel="stylesheet" type="text/css" href="templates/blog/css/font-awesome.min.css" tppabs="templates/blog/css/font-awesome.min.css">
-    <link rel="apple-touch-icon-precomposed" href="templates/blog/images/icon.png">
-    <script src="templates/blog/js/jquery-2.1.4.min.js"></script>
-    <script src="templates/blog/js/nprogress.js" tppabs="templates/blog/js/nprogress.js"></script>
-    <script src="templates/blog/js/jquery.lazyload.min.js" tppabs="templates/blog/js/jquery.lazyload.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="{{asset("templates/blog/css/bootstrap.min.css")}}" >
+    <link rel="stylesheet" type="text/css" href="{{asset("templates/blog/css/nprogress.css")}}" >
+    <link rel="stylesheet" type="text/css" href="{{asset("templates/blog/css/style.css")}}" >
+    <link rel="stylesheet" type="text/css" href="{{asset("templates/blog/css/font-awesome.min.css")}}">
+    <link rel="apple-touch-icon-precomposed" href="{{asset("templates/blog/images/icon.png")}}">
+    <script src="{{asset("templates/blog/js/jquery-2.1.4.min.js")}}"></script>
+    <script src="{{asset("templates/blog/js/nprogress.js")}}" ></script>
+    <script src="{{asset("templates/blog/js/jquery.lazyload.min.js")}}" ></script>
     <!--[if gte IE 9]>
-    <script src="templates/blog/js/jquery-1.11.1.min.js" tppabs="templates/blog/js/jquery-1.11.1.min.js" type="text/javascript"></script>
-    <script src="templates/blog/js/html5shiv.min.js" tppabs="templates/blog/js/html5shiv.min.js" type="text/javascript"></script>
-    <script src="templates/blog/js/respond.min.js" tppabs="templates/blog/js/respond.min.js" type="text/javascript"></script>
-    <script src="templates/blog/js/selectivizr-min.js" tppabs="templates/blog/js/selectivizr-min.js" type="text/javascript"></script>
+    <script src="{{asset("templates/blog/js/jquery-1.11.1.min.js")}}" type="text/javascript"></script>
+    <script src="{{asset("templates/blog/js/html5shiv.min.js")}}"  type="text/javascript"></script>
+    <script src="{{asset("templates/blog/js/respond.min.js")}}" type="text/javascript"></script>
+    <script src="{{asset("templates/blog/js/selectivizr-min.js")}}" type="text/javascript"></script>
     <![endif]-->
     <!--[if lt IE 9]>
     <script>window.location.href='upgrade-browser.html'/*tpa=upgrade-browser.html*/;</script>
@@ -241,8 +241,8 @@
     </ul>
 </div>
 <script src="https://cdn.bootcss.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-<script src="templates/blog/js/jquery.ias.js" tppabs="templates/blog/js/jquery.ias.js"></script>
-<script src="templates/blog/js/scripts.js" tppabs="templates/blog/js/scripts.js"></script>
+<script src="{{asset("templates/blog/js/jquery.ias.js")}}" ></script>
+<script src="{{asset("templates/blog/js/scripts.js")}}"></script>
 {{--<script type="text/javascript">--}}
     {{--function siteTime() {--}}
         {{--window.setTimeout("siteTime()", 1000);--}}

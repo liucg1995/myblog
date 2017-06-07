@@ -1,5 +1,5 @@
 <style>
-    .plinks li .active {
+    .plinks li.active a{
         border-color: #3399CC;
         color: #3399CC;
         -webkit-transform: scale(1.05);
@@ -15,7 +15,7 @@
             <ul class="plinks ptags">
 
                 @forelse($tags  as $tag)
-                    @if(str_contains(urldecode(request()->getPathInfo()),'category/'.$tag->name))
+                    @if(str_contains(urldecode(request()->getPathInfo()),'tag/'.$tag->name))
                         <li class="active"><a href="{{ route('tag.show',$tag->name) }}"
                                               title="{{ $tag->name }}">{{ $tag->name }}
                                 <span class="badge">{{ $tag->posts_count }}</span></a></li>
