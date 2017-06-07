@@ -120,18 +120,28 @@
                 <p class="note">本站（MZ-NetBlog主题）源码免费下载，简介：本站是采用基于ASP.NET(C#)+ MSSQL技术的开源源码DTcms二次开发制作，请大家尊重软件著作权，保留DTcms版权信息！ 演示站点：本站（木庄网络博客）特色功能：1、首页显示最新文章，首页与列表页向下滚动…</p>
             </article>
 
+@forelse($list as $val)
+            <article class="excerpt excerpt-8"><a class="focus" href="{{url("detail/".$val->id)}}" title="{{$val->title}}" target="_blank">
+                    <img class="thumb" src="{{asset($val->image)}}"
 
-            <article class="excerpt excerpt-8"><a class="focus" href="show/419.html" tppabs="show/419.html" title="自媒体大神经常逛的网站" target="_blank"><img class="thumb" data-original="upload/201704/25/201704250929411769.jpg" src="upload/201704/25/201704250929411769.jpg" tppabs="upload/201704/25/201704250929411769.jpg" alt="自媒体大神经常逛的网站" /></a>
-                <header><a class="cat" href="list/news/index.htm" tppabs="list/news/" title="资讯分享">资讯分享<i></i></a>
-                    <h2><a href="show/419.html" tppabs="show/419.html" title="自媒体大神经常逛的网站" target="_blank">自媒体大神经常逛的网站</a>
+           alt="{{$val->title}}" /></a>
+                <header><a class="cat" href="{{url("detail/".$val->id)}}"  title="资讯分享">资讯分享<i></i></a>
+                    <h2><a href="{{url("detail/".$val->id)}}"  title="{{$val->title}}" target="_blank">{{$val->title}}</a>
                     </h2>
                 </header>
                 <p class="meta">
-                    <time class="time"><i class="glyphicon glyphicon-time"></i> 2017-04-25</time>
-                    <span class="views"><i class="glyphicon glyphicon-eye-open"></i> 87</span> <a class="comment" href="show/419.html#comment" tppabs="show/419.html#comment" title="评论" target="_blank"><i class="glyphicon glyphicon-comment"></i> 8</a>
+                    <time class="time"><i class="glyphicon glyphicon-time"></i>{{with($val->created_at)->format('Y-m-d')}}</time>
+                    <span class="views"><i class="glyphicon glyphicon-eye-open"></i> {{$val->view_count}}</span>
+                    <a class="comment" href="{{url("detail/".$val->id)}}"  title="评论" target="_blank">
+                        <i class="glyphicon glyphicon-comment"></i> {{$val->comments_count}}</a>
                 </p>
-                <p class="note">做自媒体初期是比较困难的，难免会走一些弯路。除了自己多写多思考之外，上一些对自己有帮助的网站可以取得事半功倍的效果。一、新榜新榜就不用多说了，做自媒体的基本上都知道。这里会经常推出一些自媒体榜单，还有各种最新的资讯。还可以在上面投放广告或者接广告。二、梅花…</p>
+                <p class="note">
+                    {{str_limit($val->content, $limit = 300, $end = '...')}}
+
+                </p>
             </article>
+            @empty
+    @endforelse
 
             <nav class="pagination" style="display: none">
                 <ul>
