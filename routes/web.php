@@ -15,6 +15,9 @@ Route::get('/', function () {
     return view('welcome');
 });
 Route::group(['middleware' => ['web']], function () {
+    Route::group(['namespace' => 'Admin'], function () {
+        Route::get('/dashboard', 'DashboardController@index');
+    });
 
     /**
      * 登录

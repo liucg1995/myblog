@@ -36,7 +36,7 @@ class LoginController extends Controller
 
         $request = $request::all();
         if (Auth::attempt(['email' => $request['email'], 'password' => ($request['password'])])) {
-                return redirect('/posts/list');
+                return redirect('/dashboard');
         } else {
             return back()
                 ->withErrors(array("邮箱或密码输入错误"))

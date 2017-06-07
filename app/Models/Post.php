@@ -11,19 +11,8 @@ use Lufficc\Config\ConfigureHelper;
 
 class Post extends Model
 {
-    use SoftDeletes, CommentHelper, ConfigureHelper;
+    use SoftDeletes;
 
-    /**
-     * The "booting" method of the model.
-     *
-     * @return void
-     */
-    protected static function boot()
-    {
-        parent::boot();
-
-        static::addGlobalScope(new PublishedScope());
-    }
 
     /**
      * The attributes that should be mutated to dates.
