@@ -11,9 +11,8 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', 'ShowController@index');
+Route::get('/tag/{$tag}', 'ShowController@index')->name("tag.show");
 Route::group(['middleware' => ['web']], function () {
     Route::group(['namespace' => 'Admin'], function () {
         Route::get('/dashboard', 'DashboardController@index');

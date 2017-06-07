@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -13,6 +14,17 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+
+
+        View::composer('part.categories', 'App\Http\ViewComposers\CategoriesComposer');
+
+        View::composer('widget.hot_posts', 'App\Http\ViewComposers\HotPostsComposer');
+
+        View::composer('part.tag', 'App\Http\ViewComposers\TagsComposer');
+
+        View::composer(['index', 'layouts.header'], 'App\Http\ViewComposers\PagesComposer');
+
+        View::composer('*', 'App\Http\ViewComposers\SettingsComposer');
         //
     }
 
