@@ -14,3 +14,15 @@
 Route::get('/', function () {
     return view('welcome');
 });
+Route::group(['middleware' => ['web']], function () {
+
+    /**
+     * 登录
+     */
+    Route::get('/login', 'LoginController@login');
+    Route::post('/login', 'LoginController@postLogin');
+    Route::get('/logout', function () {
+        session()->flush();
+        return redirect('/login');
+    });
+});
