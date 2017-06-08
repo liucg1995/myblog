@@ -7,22 +7,22 @@
  */
 namespace App\Repositories;
 
-use App\Models\Banner;
+use App\Models\Menu;
 
-class BannerRepository extends Repository
+class MenuRepository extends Repository
 {
 
     public $model;
 
     public function __construct()
     {
-        $post = new Banner();
+        $post = new Menu();
         $this->model = $post;
     }
 
     public function selectAll()
     {
-        return $this->model->all();
+        return $this->model->orderby("sort", 'desc')->get();
     }
 
     public function find($id, $colume = array("*"))
@@ -32,12 +32,7 @@ class BannerRepository extends Repository
 
     public function all($columns = array('*'))
     {
-        return $this->model->withCount('posts')->get();
-    }
 
-    public function commentposts($columns = array('*'))
-    {
-        return $this->model->orderby("created_at", "desc")->groupby("commentable_id")->take(5)->get(["commentable_id"]);
     }
 
     public function paginate($perPage = 15, $columns = array('*'))
@@ -68,6 +63,6 @@ class BannerRepository extends Repository
 
     public function findBy($field, $value, $columns = array('*'))
     {
-
+        return $this->model->where($field, $value)->first($columns);
     }
 }

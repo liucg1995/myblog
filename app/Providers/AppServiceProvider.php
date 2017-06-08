@@ -16,10 +16,11 @@ class AppServiceProvider extends ServiceProvider
     {
 
 
-        View::composer('part.categories', 'App\Http\ViewComposers\CategoriesComposer');
+        View::composer('part.category', 'App\Http\ViewComposers\CategoriesComposer');
         View::composer('part.commentpost', 'App\Http\ViewComposers\CommentComposer');
 
-        View::composer('widget.hot_posts', 'App\Http\ViewComposers\HotPostsComposer');
+        View::composer('part.link', 'App\Http\ViewComposers\LinkComposer');
+        View::composer('part.menu', 'App\Http\ViewComposers\MenuComposer');
 
         View::composer('part.tag', 'App\Http\ViewComposers\TagsComposer');
 

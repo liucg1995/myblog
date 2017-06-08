@@ -7,13 +7,13 @@
  */
 namespace App\Http\ViewComposers;
 
-use App\Repositories\CategoryRepository;
+use App\Repositories\LinkRepository;
 use Illuminate\View\View;
 
-class CategoriesComposer
+class LinkComposer
 {
 
-    protected $categoryRepository;
+    protected $linkRepository;
 
     /**
      * Create a new profile composer.
@@ -21,9 +21,9 @@ class CategoriesComposer
      * @internal param UserRepository $users
      * @param CategoryRepository $categoryRepository
      */
-    public function __construct(CategoryRepository $categoryRepository)
+    public function __construct(LinkRepository $linkRepository)
     {
-        $this->categoryRepository = $categoryRepository;
+        $this->linkRepository = $linkRepository;
     }
 
     /**
@@ -34,7 +34,7 @@ class CategoriesComposer
      */
     public function compose(View $view)
     {
-        $categories = $this->categoryRepository->all();
-        $view->with('categories', $categories);
+        $link= $this->linkRepository->selectAll();
+        $view->with('links', $link);
     }
 }

@@ -7,13 +7,13 @@
  */
 namespace App\Http\ViewComposers;
 
-use App\Repositories\CategoryRepository;
+use App\Repositories\MenuRepository;
 use Illuminate\View\View;
 
-class CategoriesComposer
+class MenuComposer
 {
 
-    protected $categoryRepository;
+    protected $menuRepository;
 
     /**
      * Create a new profile composer.
@@ -21,9 +21,9 @@ class CategoriesComposer
      * @internal param UserRepository $users
      * @param CategoryRepository $categoryRepository
      */
-    public function __construct(CategoryRepository $categoryRepository)
+    public function __construct(MenuRepository $menuRepository)
     {
-        $this->categoryRepository = $categoryRepository;
+        $this->menuRepository = $menuRepository;
     }
 
     /**
@@ -34,7 +34,7 @@ class CategoriesComposer
      */
     public function compose(View $view)
     {
-        $categories = $this->categoryRepository->all();
-        $view->with('categories', $categories);
+        $menu= $this->menuRepository->selectAll();
+        $view->with('menus', $menu);
     }
 }

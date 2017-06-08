@@ -6,21 +6,21 @@
  * Time: 17:41
  */
 namespace App\Repositories;
-use App\Models\Post;
+use App\Models\Link;
 
-class PostRepository extends Repository {
+class LinkRepository extends Repository {
 
     public $model;
 
     public function __construct()
     {
-        $post = new Post();
-        $this->model=$post;
+        $post = new Link();
+          $this->model=$post;
     }
 
     public function selectAll()
     {
-        return $this->model->all();
+        return $this->model->orderby("sort",'desc')->get();
     }
     public function find($id,$colume=array("*"))
     {
@@ -28,10 +28,10 @@ class PostRepository extends Repository {
     }
 
     public function all($columns = array('*')){
-       return  $this->model->withCount("tags")->get();
+
     }
     public function paginate($perPage = 15, $columns = array('*')){
-        return  $this->model->withCount("comments")->paginate($perPage);
+
     }
     public function create(array $data){
 

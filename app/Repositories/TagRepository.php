@@ -13,8 +13,9 @@ class TagRepository extends Repository {
 
     public $model;
 
-    public function __construct(Tag $post)
+    public function __construct()
     {
+        $post=new Tag;
         $this->model=$post;
     }
 

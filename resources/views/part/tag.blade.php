@@ -14,12 +14,12 @@
         <div class="widget-sentence-content">
             <ul class="plinks ptags">
                 @forelse($tags  as $tag)
-                    @if(str_contains(urldecode(request()->getPathInfo()),'tag/'.$tag->name))
-                        <li class="active"><a href="{{ route('tag.show',$tag->name) }}"
+                    @if(str_contains(urldecode(request()->getPathInfo()),'tag/'.$tag->id))
+                        <li class="active"><a href="{{ route('tag.show',$tag->id) }}"
                                               title="{{ $tag->name }}">{{ $tag->name }}
                                 <span class="badge">{{ $tag->posts_count }}</span></a></li>
                     @else
-                        <li><a href="{{ route('tag.show',$tag->name) }}"
+                        <li><a href="{{ route('tag.show',$tag->id) }}"
                                title="{{ $tag->name }}">{{ $tag->name }}
                                 <span class="badge">{{ $tag->posts_count }}</span></a></li>
                     @endif

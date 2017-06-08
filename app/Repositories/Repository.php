@@ -9,6 +9,9 @@ namespace App\Repositories;
 class Repository implements RepositoryInterface {
 
     public $model;
+    public function __construct(){
+
+    }
 
     public function selectAll()
     {
