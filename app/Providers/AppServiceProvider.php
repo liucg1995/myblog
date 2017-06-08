@@ -17,6 +17,7 @@ class AppServiceProvider extends ServiceProvider
 
 
         View::composer('part.categories', 'App\Http\ViewComposers\CategoriesComposer');
+        View::composer('part.commentpost', 'App\Http\ViewComposers\CommentComposer');
 
         View::composer('widget.hot_posts', 'App\Http\ViewComposers\HotPostsComposer');
 

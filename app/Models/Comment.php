@@ -26,6 +26,11 @@ class Comment extends Model
         return $this->belongsTo(User::class);
     }
 
+    public function posts()
+    {
+        return $this->belongsTo("App\Models\Post","commentable_id");
+    }
+
     public function ip()
     {
         return $this->belongsTo(Ip::class);
