@@ -7,8 +7,7 @@
  */
 namespace App\Http\ViewComposers;
 
-use App\Facades\XblogConfig;
-use App\Http\Repositories\PostRepository;
+use App\Repositories\PostRepository;
 use Illuminate\View\View;
 
 class HotPostsComposer
@@ -35,9 +34,7 @@ class HotPostsComposer
      */
     public function compose(View $view)
     {
-        $hotPosts = $this->postRepository->hotPosts(XblogConfig::getValue('hot_posts_count', 5))->sortBy(function ($post, $key) {
-            return -($post->view_count + $post->comments_count);
-        });
+        $hotPosts = $this->postRepository->hotPosts();
         $view->with('hotPosts', $hotPosts);
     }
 }

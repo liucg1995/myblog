@@ -4,9 +4,10 @@
     </div>
     <ul>
 
-        @forelse($posts as $post)
+        @forelse($hotPosts as $post)
 
             <li><a href="{{url("detail/".$post->id)}}" title="{{$post->title}}">{{$post->title}}</a></li>
+            @empty
         @endforelse
 
 

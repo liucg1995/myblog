@@ -22,6 +22,12 @@ class PostRepository extends Repository {
     {
         return $this->model->all();
     }
+    public function increNum($where=array()){
+        return $this->model->where($where)->increment("view_count");
+    }
+    public function hotPosts(){
+        return $this->model->orderby("view_count","desc")->take(7)->get();
+    }
     public function find($id,$colume=array("*"))
     {
         return $this->model->withCount("comments")->find($id);
