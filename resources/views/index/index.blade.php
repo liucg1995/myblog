@@ -58,57 +58,10 @@
                 </article>
             @empty
             @endforelse
-
-            <nav class="pagination" style="display: none">
-                <ul>
-                    <li class="next-page"><a href="a/2" tppabs="index/2/">下一页</a></li>
-                </ul>
-            </nav>
+            @include("part.tfoot",["paginator"=>$list])
         </div>
     </div>
-    <aside class="sidebar">
-        <div class="fixed">
-            {{--<div class="widget widget-tabs">--}}
-            {{--<ul class="nav nav-tabs" role="tablist">--}}
-            {{--<li role="presentation" class="active"><a href="#notice" aria-controls="notice" role="tab" data-toggle="tab">统计信息</a></li>--}}
-            {{--<li role="presentation"><a href="#contact" aria-controls="contact" role="tab" data-toggle="tab">联系站长</a></li>--}}
-            {{--</ul>--}}
-            {{--<div class="tab-content">--}}
-            {{--<div role="tabpanel" class="tab-pane contact active" id="notice">--}}
-            {{--<h2>日志总数:--}}
-            {{--305篇--}}
-            {{--</h2>--}}
-            {{--<h2>网站运行:--}}
-            {{--<span id="sitetime"></span></h2>--}}
-            {{--</div>--}}
-            {{--<div role="tabpanel" class="tab-pane contact" id="contact">--}}
-            {{--<h2>交流QQ群:--}}
-            {{--<a href="javascript:if(confirm('https://jq.qq.com/?_wv=1027&k=4205AJJ  \n\n??ļ????? Teleport Ultra ??, ?Ϊ ??һ???????????????Ϊ?????????ĵ????  \n\n????????????'))window.location='https://jq.qq.com/?_wv=1027&k=4205AJJ'" tppabs="https://jq.qq.com/?_wv=1027&k=4205AJJ" target="_blank" rel="nofollow" data-toggle="tooltip" data-placement="bottom" title="QQ群:562366239">562366239</a>--}}
-            {{--</h2>--}}
-            {{--<h2>Email:--}}
-            {{--<a href="mailto:admin@muzhuangnet.com" target="_blank" data-toggle="tooltip" rel="nofollow" data-placement="bottom" title="Email:admin@muzhuangnet.com">admin@muzhuangnet.com</a></h2>--}}
-            {{--</div>--}}
-            {{--</div>--}}
-            {{--</div>--}}
-            <div class="widget widget_search">
-                <form class="navbar-form" id="searchform">
-                    <div class="input-group">
-                        <input type="text" class="form-control" onkeydown="" size="35" placeholder="请输入关键字"
-                               id="keywords" name="keywords" maxlength="15" autocomplete="off"/>
-                        <span class="input-group-btn">
-        <input type="button" value="搜索" onclick=""
-               class="btn btn-default btn-search" id="searchsubmit" value="Search">
-    </span>
-                    </div>
-                </form>
-
-            </div>
-        </div>
-        @include("part.category")
-        @include("part.tag")
-        @include("part.commentpost")
-        @include("part.link")
-    </aside>
+    @include("part.right")
 </section>
 @endsection
 

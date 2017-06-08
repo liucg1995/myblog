@@ -21,16 +21,13 @@ class ShowController extends Controller
     public function index(BannerRepository $banner,PostRepository $post,CategoryRepository $categoryRepository)
     {
         $bannerlist = $banner->selectAll();
-        $list = $post->paginate(10);
+        $list = $post->paginate(5);
 
         return view("index.index", ["list" => $list, 'blist' => $bannerlist]);
     }
 
     public function lists(PostRepository $post)
     {
-//        echo url()->current();
-//        echo url()->full();
-//        Request::
        $href = FRequest::segment(1);
        $val =  FRequest::segment(2);
         switch ($href){
@@ -50,9 +47,31 @@ class ShowController extends Controller
                 $list = $info->posts()->withCount("comments")->paginate(5);
                 break;
         }
-//        dd($info);
-//        $list = $post->paginate(10);
-        return view("index.list", ["list" => $list,'title'=>$info]);
+        return view("index.list", ["list" => $list,'title'=>$info->name]);
+    }
+
+    public function detail(PostRepository $post,$id){
+
+        $detail = $post->find($id);
+
+        return view("index.detail", ["detail" => $detail]);
+
+
+
+    }
+
+    public function search(Request $request,PostRepository $post){
+//DB::listen(function ($sql){
+//    dump($sql);
+//});
+        $keyword= $request->keywords;
+        $list =  $post->wherepaginate(7,$keyword);
+        $list->appends(["keywords"=>$keyword]);
+//        die;
+
+
+
+        return view("index.list", ["list" => $list,'title'=>$keyword]);
 
     }
 

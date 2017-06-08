@@ -13,7 +13,9 @@
 
 Route::get('/', 'ShowController@index');
 Route::get('/tag/{tag}', 'ShowController@lists')->name("tag.show");
+Route::get('/search', 'ShowController@search');
 Route::get('/menu/{menu}', 'ShowController@lists')->name("menu.show");
+Route::get('/detail/{id}', 'ShowController@detail');
 Route::get('/category/{category}', 'ShowController@lists')->name("category.show");
 Route::group(['middleware' => ['web']], function () {
     Route::group(['namespace' => 'Admin'], function () {

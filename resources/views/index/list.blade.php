@@ -4,7 +4,7 @@
     <div class="content-wrap">
         <div class="content">
             <div class="title">
-                <h3 style="line-height: 1.3">{{$title->name}}</h3>
+                <h3 style="line-height: 1.3">{{$title}}</h3>
                 <div class="more">
 
                 </div>
@@ -37,38 +37,12 @@
             @empty
             @endforelse
 
+            @include("part.tfoot",["paginator"=>$list])
 
 
-            <nav class="pagination" style="display: none;">
-                <ul>
-                    <li class="next-page"><a href="2.html" tppabs="http://www.muzhuangnet.com/list/php/2.html">下一页</a></li>
-                </ul>
-            </nav>
+
         </div>
     </div>
-    <aside class="sidebar">
-        <div class="fixed">
-            <div class="widget widget_search">
-                <form class="navbar-form" id="searchform">
-                    <div class="input-group">
-                        <input type="text" class="form-control" onkeydown="if (event.keyCode == 13) {SiteSearch('http://www.muzhuangnet.com/search.html', '#keywords');return false};"
-                               size="35" placeholder="请输入关键字" id="keywords" name="keywords" maxlength="15" autocomplete="off" />
-                        <span class="input-group-btn">
-        <input type="button" value="搜索" onclick="SiteSearch('../../search.html'/*tpa=http://www.muzhuangnet.com/search.html*/, '#keywords');"
-               class="btn btn-default btn-search" id="searchsubmit" value="Search">
-    </span>
-                    </div>
-                </form>
-
-            </div>
-            @include("part.category")
-            @include("part.tag")
-
-        </div>
-        @include("part.commentpost")
-        @include("part.link")
-
-
-    </aside>
+    @include("part.right")
 </section>
 @endsection

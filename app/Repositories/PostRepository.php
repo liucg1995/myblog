@@ -24,7 +24,7 @@ class PostRepository extends Repository {
     }
     public function find($id,$colume=array("*"))
     {
-        return $this->model->find($id);
+        return $this->model->withCount("comments")->find($id);
     }
 
     public function all($columns = array('*')){
@@ -32,6 +32,9 @@ class PostRepository extends Repository {
     }
     public function paginate($perPage = 15, $columns = array('*')){
         return  $this->model->withCount("comments")->paginate($perPage);
+    }
+    public function wherepaginate($perPage = 15,$keyword="", $columns = array('*')){
+        return  $this->model->where("title","like","%".$keyword."%")->orwhere("content","like","%".$keyword."%")->orwhere("description","like","%".$keyword."%")->withCount("comments")->paginate($perPage);
     }
     public function create(array $data){
 

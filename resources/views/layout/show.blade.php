@@ -19,7 +19,7 @@
     <link rel="apple-touch-icon-precomposed" href="/templates/blog/images/icon.png">
     <script src="/templates/blog/js/jquery-2.1.4.min.js"></script>
     <script src="/templates/blog/js/nprogress.js" tppabs="templates/blog/js/nprogress.js"></script>
-    <script src="/templates/blog/js/jquery.lazyload.min.js" tppabs="templates/blog/js/jquery.lazyload.min.js"></script>
+    {{--<script src="/templates/blog/js/jquery.lazyload.min.js" tppabs="templates/blog/js/jquery.lazyload.min.js"></script>--}}
 
 
 
@@ -42,7 +42,7 @@
                         data-target="#header-navbar" aria-expanded="false"><span class="sr-only"></span> <span
                             class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span>
                 </button>
-                <h1 class="logo hvr-bounce-in"><a href="index.htm" tppabs="" title="木庄网络博客">
+                <h1 class="logo hvr-bounce-in"><a href="/" tppabs="" title="木庄网络博客">
                         <img src="/upload/201610/17/201610171329086541.png"
                              alt="木庄网络博客"/></a></h1>
             </div>
@@ -85,7 +85,7 @@
 </div>
 <script src="https://cdn.bootcss.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 <script src="/templates/blog/js/jquery.ias.js" tppabs="templates/blog/js/jquery.ias.js"></script>
-<script src="/templates/blog/js/scripts.js" tppabs="templates/blog/js/scripts.js"></script>
+{{--<script src="/templates/blog/js/scripts.js" tppabs="templates/blog/js/scripts.js"></script>--}}
 {{--<script type="text/javascript">--}}
 {{--function siteTime() {--}}
 {{--window.setTimeout("siteTime()", 1000);--}}
