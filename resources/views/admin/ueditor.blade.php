@@ -1,4 +1,4 @@
-@include("zhangmazi::ueditor")
+{{--@include("zhangmazi::ueditor")--}}
 <style>
     .form-controls{
         display: block;
@@ -25,7 +25,7 @@
     <label for="{{$id}}" class="col-sm-2 control-label">{{$label}}</label>
 
     <div class="col-sm-8">
-        <script class="form-controls col-sm-8" style="padding:0" id="{{$id}}" name="{{$name}}" placeholder="{{ trans('admin::lang.input') }} {{$label}}" {!! $attributes !!} type="text/plain">{{ old($column, $value) }}</script>
+        <textarea class="form-controls col-sm-8" style="padding:0" id="{{$id}}" name="{{$name}}" placeholder="{{ trans('admin::lang.input') }} {{$label}}" {!! $attributes !!} type="text/plain">{!!   $value !!} </textarea>
         {{--<textarea class="form-control" id="{{$id}}" name="{{$name}}" placeholder="{{ trans('admin::lang.input') }} {{$label}}" {!! $attributes !!} >{{ old($column, $value) }}</textarea>--}}
     </div>
 </div>
