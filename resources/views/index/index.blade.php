@@ -17,7 +17,7 @@
 
                     <div class="item  @if($key=='0') active @endif" ><a href="{{$val->href}}"  target="_blank"
                                                 title="{{$val->desc}}">
-                            <img src="{{asset($val->image)}}"
+                            <img src="{{asset('/storage/'.$val->image)}}"
 
                                                                       alt="{{$val->desc}}" class="img-responsive"></a>
                     </div>

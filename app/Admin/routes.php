@@ -13,5 +13,9 @@ Route::group([
 
     $router->get('/', 'HomeController@index');
     $router->resource("banner",BannerController::class);
+    $router->resource("menu",MenuController::class);
+    $router->resource("type",CategoryController::class);
+    $router->resource("tag",TagController::class);
+    $router->resource("post",PostController::class);
 
 });

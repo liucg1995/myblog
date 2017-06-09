@@ -41,6 +41,11 @@ class Post extends Model
         return $this->belongsTo(Category::class);
     }
 
+    public function menu()
+    {
+        return $this->belongsTo(Menu::class);
+    }
+
     public function tags()
     {
         return $this->belongsToMany(Tag::class);
