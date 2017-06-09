@@ -179,6 +179,7 @@ return [
         App\Providers\RouteServiceProvider::class,
 
         Encore\Admin\Providers\AdminServiceProvider::class,
+        Zhangmazi\Ueditor\UeditorServiceProivder::class
     ],
 
     /*

@@ -17,18 +17,20 @@ class PHPEditor extends Field
 
 
     protected static $js = [
-        '/packages/ueditor/ueditor.all.min.js',
-        '/packages/ueditor/ueditor.config.js',
+//        '/packages/ueditor/ueditor.all.min.js',
+//        '/packages/ueditor/ueditor.config.js',
     ];
 
     public function render()
     {
-        $this->script = <<<EOT
+        $this->script =
         
-var ue = UE.getEditor('content');
+    "var ueditor_full = UE.getEditor('{$this->id}', {
+    'serverUrl' : '". route("zhangmazi_front_ueditor_service", ['_token' => csrf_token()]) ."'
+});";
 
 
-EOT;
+
 
         return parent::render();
 

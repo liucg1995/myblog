@@ -6,8 +6,8 @@
 
                 <li>
                     <a title="{{$post->posts->title}}" href="/detail/{{$post->posts->id}}">
-                        <span class="thumbnail"><img class="thumb" data-original="{{asset($post->posts->image)}}"
-                                                     src="{{asset($post->posts->image)}}"
+                        <span class="thumbnail"><img class="thumb" data-original="{{asset('storage/'.$post->posts->image)}}"
+                                                     src="{{asset('storage/'.$post->posts->image)}}"
                                                      alt="{{$post->posts->title}}"/></span>
                         <span class="text">{{$post->posts->title}}</span>
                         <span class="muted">

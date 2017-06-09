@@ -18,7 +18,7 @@
  *
  */
 
-Encore\Admin\Form::forget(['map']);
+Encore\Admin\Form::forget(['map','editor']);
 
 use App\Admin\Extensions\PHPEditor;
 use Encore\Admin\Form;
