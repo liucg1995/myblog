@@ -51,6 +51,11 @@ class Post extends Model
         return $this->belongsToMany(Tag::class);
     }
 
+    public function comment()
+    {
+        return $this->belongsToMany(Comment::class, 'commentable');
+    }
+
     public function user()
     {
         return $this->belongsTo(User::class);

@@ -13,6 +13,7 @@ use Encore\Admin\Facades\Admin;
 use Encore\Admin\Form;
 use Encore\Admin\Grid;
 use Encore\Admin\Layout\Content;
+use Illuminate\Support\Facades\DB;
 
 class PostController extends Controller
 {
@@ -71,6 +72,9 @@ class PostController extends Controller
      */
     protected function grid()
     {
+//        DB::listen(function ($sql){
+//            dump($sql);
+//        });
         return Admin::grid(Post::class, function (Grid $grid) {
             $grid->id('ID')->sortable();
             $grid->category()->name("分类");
@@ -83,16 +87,29 @@ class PostController extends Controller
 //                $cate =  Menu::find($category_id);
 //                return $cate->name;
 //            });
-            $grid->image()->value(function ($avatar) {
-                return "<img src='".config("admin.upload.host").$avatar."' width='400px' />";
-            });
+            $grid->tags("标签")->pluck('name')->label();
+            $grid->image("图片")->image();
             $grid->title("标题");
             $grid->description("描述");
             $grid->view_count("浏览次数");
+            $grid->id('评论数')->display(function ($val){
+               $post = Post::where("id",$val)->withCount("comments")->first();
+                return $post->comments_count;
+            },"评论数");
             $grid->created_at("添加时间");
             $grid->filter(function ($filter) {
-                $filter->like('title');
-                $filter->like('description');
+                $filter->like('title',"标题");
+                $filter->like('description','描述');
+                $filter->is('category_id', '分类')->select(Category::get()->pluck('name', 'id'));
+                $filter->is('menu_id', '菜单')->select(Menu::get()->pluck('name', 'id'));
+                $filter->where(function ($query) {
+
+                    $query->whereHas('tags', function ($query) {
+                        $query->where('id', $this->input);
+                    });
+
+                }, 'Has tag')->select(Tag::get()->pluck('name', 'id'));
+//                $filter->tag()->select(Tag::get()->pluck('name', 'id'));
             });
 
 

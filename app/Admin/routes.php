@@ -17,5 +17,6 @@ Route::group([
     $router->resource("type",CategoryController::class);
     $router->resource("tag",TagController::class);
     $router->resource("post",PostController::class);
+    $router->resource("comment",CommentController::class);
 
 });

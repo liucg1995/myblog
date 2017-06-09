@@ -73,6 +73,9 @@ class MenuController extends Controller
             $grid->href("链接");
 
             $grid->created_at("添加时间");
+//            $grid->sorts("排序")->orderable();
+            $grid->sorts();
+
 
             $grid->filter(function ($filter) {
                 $filter->like('name');
