@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: 2017-06-08 13:11:24
+-- Generation Time: 2017-06-09 12:58:36
 -- 服务器版本： 10.1.16-MariaDB
 -- PHP Version: 7.0.9
 
@@ -19,6 +19,305 @@ SET time_zone = "+00:00";
 --
 -- Database: `myblog`
 --
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `admin_menu`
+--
+
+CREATE TABLE `admin_menu` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `parent_id` int(11) NOT NULL DEFAULT '0',
+  `order` int(11) NOT NULL DEFAULT '0',
+  `title` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
+  `icon` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
+  `uri` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- 转存表中的数据 `admin_menu`
+--
+
+INSERT INTO `admin_menu` (`id`, `parent_id`, `order`, `title`, `icon`, `uri`, `created_at`, `updated_at`) VALUES
+(1, 0, 1, 'Index', 'fa-bar-chart', '/', NULL, NULL),
+(2, 0, 2, 'Admin', 'fa-tasks', '', NULL, NULL),
+(3, 2, 3, 'Users', 'fa-users', 'auth/users', NULL, NULL),
+(4, 2, 4, 'Roles', 'fa-user', 'auth/roles', NULL, NULL),
+(5, 2, 5, 'Permission', 'fa-user', 'auth/permissions', NULL, NULL),
+(6, 2, 6, 'Menu', 'fa-bars', 'auth/menu', NULL, NULL),
+(7, 2, 7, 'Operation log', 'fa-history', 'auth/logs', NULL, NULL),
+(8, 0, 8, 'Helpers', 'fa-gears', '', NULL, NULL),
+(9, 8, 9, 'Scaffold', 'fa-keyboard-o', 'helpers/scaffold', NULL, NULL),
+(10, 8, 10, 'Database terminal', 'fa-database', 'helpers/terminal/database', NULL, NULL),
+(11, 8, 11, 'Laravel artisan', 'fa-terminal', 'helpers/terminal/artisan', NULL, NULL),
+(12, 0, 0, 'Banner', 'fa-bars', '', '2017-06-09 02:04:09', '2017-06-09 02:04:09');
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `admin_operation_log`
+--
+
+CREATE TABLE `admin_operation_log` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `path` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `method` varchar(10) COLLATE utf8_unicode_ci NOT NULL,
+  `ip` varchar(15) COLLATE utf8_unicode_ci NOT NULL,
+  `input` text COLLATE utf8_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- 转存表中的数据 `admin_operation_log`
+--
+
+INSERT INTO `admin_operation_log` (`id`, `user_id`, `path`, `method`, `ip`, `input`, `created_at`, `updated_at`) VALUES
+(1, 1, 'admin', 'GET', '127.0.0.1', '[]', '2017-06-09 02:03:31', '2017-06-09 02:03:31'),
+(2, 1, 'admin/auth/menu', 'GET', '127.0.0.1', '{"_pjax":"#pjax-container"}', '2017-06-09 02:03:45', '2017-06-09 02:03:45'),
+(3, 1, 'admin/auth/menu', 'POST', '127.0.0.1', '{"parent_id":"0","title":"Banner","icon":"fa-bars","uri":"","roles":[""],"_token":"4PTBWDZAAU437V77sHoDgmriJgMlf6E7CxiPSaNY"}', '2017-06-09 02:04:09', '2017-06-09 02:04:09'),
+(4, 1, 'admin/auth/menu', 'GET', '127.0.0.1', '[]', '2017-06-09 02:04:10', '2017-06-09 02:04:10'),
+(5, 1, 'admin/auth/menu', 'GET', '127.0.0.1', '[]', '2017-06-09 02:04:13', '2017-06-09 02:04:13'),
+(6, 1, 'admin/banner', 'GET', '127.0.0.1', '[]', '2017-06-09 02:12:45', '2017-06-09 02:12:45'),
+(7, 1, 'admin/banner', 'GET', '127.0.0.1', '[]', '2017-06-09 02:13:47', '2017-06-09 02:13:47'),
+(8, 1, 'admin/banner', 'GET', '127.0.0.1', '[]', '2017-06-09 02:14:24', '2017-06-09 02:14:24'),
+(9, 1, 'admin/auth/users', 'GET', '127.0.0.1', '{"_pjax":"#pjax-container"}', '2017-06-09 02:14:35', '2017-06-09 02:14:35'),
+(10, 1, 'admin/auth/users', 'GET', '127.0.0.1', '{"_pjax":"#pjax-container"}', '2017-06-09 02:14:37', '2017-06-09 02:14:37'),
+(11, 1, 'admin/auth/roles', 'GET', '127.0.0.1', '{"_pjax":"#pjax-container"}', '2017-06-09 02:14:38', '2017-06-09 02:14:38'),
+(12, 1, 'admin/auth/users', 'GET', '127.0.0.1', '{"_pjax":"#pjax-container"}', '2017-06-09 02:14:40', '2017-06-09 02:14:40'),
+(13, 1, 'admin/auth/roles', 'GET', '127.0.0.1', '{"_pjax":"#pjax-container"}', '2017-06-09 02:14:41', '2017-06-09 02:14:41'),
+(14, 1, 'admin/auth/permissions', 'GET', '127.0.0.1', '{"_pjax":"#pjax-container"}', '2017-06-09 02:14:42', '2017-06-09 02:14:42'),
+(15, 1, 'admin/auth/roles', 'GET', '127.0.0.1', '{"_pjax":"#pjax-container"}', '2017-06-09 02:14:44', '2017-06-09 02:14:44'),
+(16, 1, 'admin/auth/roles', 'GET', '127.0.0.1', '[]', '2017-06-09 02:15:42', '2017-06-09 02:15:42'),
+(17, 1, 'admin/auth/roles', 'GET', '127.0.0.1', '[]', '2017-06-09 02:17:24', '2017-06-09 02:17:24'),
+(18, 1, 'admin', 'GET', '127.0.0.1', '{"_pjax":"#pjax-container"}', '2017-06-09 02:17:26', '2017-06-09 02:17:26'),
+(19, 1, 'admin/banner', 'GET', '127.0.0.1', '[]', '2017-06-09 02:17:31', '2017-06-09 02:17:31'),
+(20, 1, 'admin/banner', 'GET', '127.0.0.1', '[]', '2017-06-09 02:17:50', '2017-06-09 02:17:50'),
+(21, 1, 'admin/banner', 'GET', '127.0.0.1', '[]', '2017-06-09 02:18:18', '2017-06-09 02:18:18'),
+(22, 1, 'admin/banner', 'GET', '127.0.0.1', '[]', '2017-06-09 02:18:26', '2017-06-09 02:18:26'),
+(23, 1, 'admin/banner', 'GET', '127.0.0.1', '[]', '2017-06-09 02:18:58', '2017-06-09 02:18:58'),
+(24, 1, 'admin/banner/1/edit', 'GET', '127.0.0.1', '{"_pjax":"#pjax-container"}', '2017-06-09 02:19:05', '2017-06-09 02:19:05'),
+(25, 1, 'admin/banner', 'GET', '127.0.0.1', '[]', '2017-06-09 02:19:06', '2017-06-09 02:19:06'),
+(26, 1, 'admin/banner', 'GET', '127.0.0.1', '[]', '2017-06-09 02:20:57', '2017-06-09 02:20:57'),
+(27, 1, 'admin/banner/1/edit', 'GET', '127.0.0.1', '{"_pjax":"#pjax-container"}', '2017-06-09 02:21:00', '2017-06-09 02:21:00'),
+(28, 1, 'admin/banner', 'GET', '127.0.0.1', '[]', '2017-06-09 02:21:01', '2017-06-09 02:21:01'),
+(29, 1, 'admin/banner', 'GET', '127.0.0.1', '[]', '2017-06-09 02:21:22', '2017-06-09 02:21:22'),
+(30, 1, 'admin/banner/1/edit', 'GET', '127.0.0.1', '{"_pjax":"#pjax-container"}', '2017-06-09 02:21:24', '2017-06-09 02:21:24'),
+(31, 1, 'admin/banner', 'GET', '127.0.0.1', '[]', '2017-06-09 02:21:24', '2017-06-09 02:21:24'),
+(32, 1, 'admin/banner', 'GET', '127.0.0.1', '[]', '2017-06-09 02:21:46', '2017-06-09 02:21:46'),
+(33, 1, 'admin/banner/1/edit', 'GET', '127.0.0.1', '{"_pjax":"#pjax-container"}', '2017-06-09 02:21:49', '2017-06-09 02:21:49'),
+(34, 1, 'admin/banner/1/edit', 'GET', '127.0.0.1', '[]', '2017-06-09 02:22:31', '2017-06-09 02:22:31'),
+(35, 1, 'admin/banner/1/edit', 'GET', '127.0.0.1', '[]', '2017-06-09 02:22:33', '2017-06-09 02:22:33'),
+(36, 1, 'admin/banner/1', 'PUT', '127.0.0.1', '{"desc":"1","_token":"4PTBWDZAAU437V77sHoDgmriJgMlf6E7CxiPSaNY","_method":"PUT"}', '2017-06-09 02:22:46', '2017-06-09 02:22:46'),
+(37, 1, 'admin/banner/1/edit', 'GET', '127.0.0.1', '[]', '2017-06-09 02:22:47', '2017-06-09 02:22:47'),
+(38, 1, 'admin/banner/1/edit', 'GET', '127.0.0.1', '[]', '2017-06-09 02:23:03', '2017-06-09 02:23:03'),
+(39, 1, 'admin/banner/1', 'PUT', '127.0.0.1', '{"key":"0","image":"","__del__":"","_token":"4PTBWDZAAU437V77sHoDgmriJgMlf6E7CxiPSaNY","_method":"PUT"}', '2017-06-09 02:23:11', '2017-06-09 02:23:11'),
+(40, 1, 'admin/banner/1/edit', 'GET', '127.0.0.1', '[]', '2017-06-09 02:23:17', '2017-06-09 02:23:17'),
+(41, 1, 'admin/banner/1', 'PUT', '127.0.0.1', '{"key":"0","image":"","__del__":"","_token":"4PTBWDZAAU437V77sHoDgmriJgMlf6E7CxiPSaNY","_method":"PUT"}', '2017-06-09 02:23:21', '2017-06-09 02:23:21'),
+(42, 1, 'admin/banner/1/edit', 'GET', '127.0.0.1', '{"_pjax":"#pjax-container"}', '2017-06-09 02:23:47', '2017-06-09 02:23:47'),
+(43, 1, 'admin/banner', 'GET', '127.0.0.1', '{"_pjax":"#pjax-container"}', '2017-06-09 02:23:48', '2017-06-09 02:23:48'),
+(44, 1, 'admin/banner/1/edit', 'GET', '127.0.0.1', '{"_pjax":"#pjax-container"}', '2017-06-09 02:23:50', '2017-06-09 02:23:50'),
+(45, 1, 'admin/banner/1', 'PUT', '127.0.0.1', '{"key":"0","image":"","__del__":"","_token":"4PTBWDZAAU437V77sHoDgmriJgMlf6E7CxiPSaNY","_method":"PUT"}', '2017-06-09 02:23:58', '2017-06-09 02:23:58'),
+(46, 1, 'admin/banner/1/edit', 'GET', '127.0.0.1', '[]', '2017-06-09 02:24:12', '2017-06-09 02:24:12'),
+(47, 1, 'admin/banner/1/edit', 'GET', '127.0.0.1', '[]', '2017-06-09 02:24:28', '2017-06-09 02:24:28'),
+(48, 1, 'admin/banner/1', 'PUT', '127.0.0.1', '{"desc":"1","_token":"4PTBWDZAAU437V77sHoDgmriJgMlf6E7CxiPSaNY","_method":"PUT"}', '2017-06-09 02:24:40', '2017-06-09 02:24:40'),
+(49, 1, 'admin/banner', 'GET', '127.0.0.1', '[]', '2017-06-09 02:24:41', '2017-06-09 02:24:41'),
+(50, 1, 'admin/banner', 'GET', '127.0.0.1', '[]', '2017-06-09 02:24:46', '2017-06-09 02:24:46'),
+(51, 1, 'admin/banner/1/edit', 'GET', '127.0.0.1', '{"_pjax":"#pjax-container"}', '2017-06-09 02:24:49', '2017-06-09 02:24:49'),
+(52, 1, 'admin/banner/1', 'PUT', '127.0.0.1', '{"desc":"1","_token":"4PTBWDZAAU437V77sHoDgmriJgMlf6E7CxiPSaNY","_method":"PUT","_previous_":"http:\\/\\/myblog.test.com\\/admin\\/banner"}', '2017-06-09 02:24:58', '2017-06-09 02:24:58'),
+(53, 1, 'admin/banner', 'GET', '127.0.0.1', '[]', '2017-06-09 02:24:58', '2017-06-09 02:24:58'),
+(54, 1, 'admin/banner', 'GET', '127.0.0.1', '[]', '2017-06-09 02:26:17', '2017-06-09 02:26:17'),
+(55, 1, 'admin/banner', 'GET', '127.0.0.1', '[]', '2017-06-09 02:26:53', '2017-06-09 02:26:53'),
+(56, 1, 'admin/banner', 'GET', '127.0.0.1', '[]', '2017-06-09 02:27:36', '2017-06-09 02:27:36'),
+(57, 1, 'admin/banner', 'GET', '127.0.0.1', '[]', '2017-06-09 02:31:10', '2017-06-09 02:31:10'),
+(58, 1, 'admin/banner', 'GET', '127.0.0.1', '[]', '2017-06-09 02:32:18', '2017-06-09 02:32:18'),
+(59, 1, 'admin/banner', 'GET', '127.0.0.1', '[]', '2017-06-09 02:33:12', '2017-06-09 02:33:12'),
+(60, 1, 'admin/banner', 'GET', '127.0.0.1', '[]', '2017-06-09 02:33:47', '2017-06-09 02:33:47'),
+(61, 1, 'admin/banner', 'GET', '127.0.0.1', '[]', '2017-06-09 02:33:49', '2017-06-09 02:33:49'),
+(62, 1, 'admin/banner/1/edit', 'GET', '127.0.0.1', '{"_pjax":"#pjax-container"}', '2017-06-09 02:35:03', '2017-06-09 02:35:03'),
+(63, 1, 'admin/banner/1', 'PUT', '127.0.0.1', '{"desc":"1","_token":"4PTBWDZAAU437V77sHoDgmriJgMlf6E7CxiPSaNY","_method":"PUT","_previous_":"http:\\/\\/myblog.test.com\\/admin\\/banner"}', '2017-06-09 02:35:10', '2017-06-09 02:35:10'),
+(64, 1, 'admin/banner', 'GET', '127.0.0.1', '[]', '2017-06-09 02:35:10', '2017-06-09 02:35:10'),
+(65, 1, 'admin/banner/1/edit', 'GET', '127.0.0.1', '{"_pjax":"#pjax-container"}', '2017-06-09 02:38:09', '2017-06-09 02:38:09'),
+(66, 1, 'admin/banner/1', 'PUT', '127.0.0.1', '{"desc":"1","_token":"4PTBWDZAAU437V77sHoDgmriJgMlf6E7CxiPSaNY","_method":"PUT","_previous_":"http:\\/\\/myblog.test.com\\/admin\\/banner"}', '2017-06-09 02:38:16', '2017-06-09 02:38:16'),
+(67, 1, 'admin/banner', 'GET', '127.0.0.1', '[]', '2017-06-09 02:38:16', '2017-06-09 02:38:16'),
+(68, 1, 'admin/banner', 'GET', '127.0.0.1', '[]', '2017-06-09 02:38:54', '2017-06-09 02:38:54'),
+(69, 1, 'admin/banner/1/edit', 'GET', '127.0.0.1', '{"_pjax":"#pjax-container"}', '2017-06-09 02:38:55', '2017-06-09 02:38:55'),
+(70, 1, 'admin/banner/1', 'PUT', '127.0.0.1', '{"desc":"1","_token":"4PTBWDZAAU437V77sHoDgmriJgMlf6E7CxiPSaNY","_method":"PUT","_previous_":"http:\\/\\/myblog.test.com\\/admin\\/banner"}', '2017-06-09 02:39:00', '2017-06-09 02:39:00'),
+(71, 1, 'admin/banner', 'GET', '127.0.0.1', '[]', '2017-06-09 02:39:00', '2017-06-09 02:39:00'),
+(72, 1, 'admin/banner/1/edit', 'GET', '127.0.0.1', '{"_pjax":"#pjax-container"}', '2017-06-09 02:40:19', '2017-06-09 02:40:19'),
+(73, 1, 'admin/banner', 'GET', '127.0.0.1', '[]', '2017-06-09 02:40:19', '2017-06-09 02:40:19'),
+(74, 1, 'admin/banner', 'GET', '127.0.0.1', '[]', '2017-06-09 02:40:55', '2017-06-09 02:40:55'),
+(75, 1, 'admin/banner/1/edit', 'GET', '127.0.0.1', '{"_pjax":"#pjax-container"}', '2017-06-09 02:40:58', '2017-06-09 02:40:58'),
+(76, 1, 'admin/banner/1', 'PUT', '127.0.0.1', '{"desc":"1","_token":"4PTBWDZAAU437V77sHoDgmriJgMlf6E7CxiPSaNY","_method":"PUT","_previous_":"http:\\/\\/myblog.test.com\\/admin\\/banner"}', '2017-06-09 02:41:06', '2017-06-09 02:41:06'),
+(77, 1, 'admin/banner', 'GET', '127.0.0.1', '[]', '2017-06-09 02:41:06', '2017-06-09 02:41:06'),
+(78, 1, 'admin', 'GET', '127.0.0.1', '{"_pjax":"#pjax-container"}', '2017-06-09 02:41:43', '2017-06-09 02:41:43'),
+(79, 1, 'admin/auth/users', 'GET', '127.0.0.1', '{"_pjax":"#pjax-container"}', '2017-06-09 02:41:45', '2017-06-09 02:41:45'),
+(80, 1, 'admin/auth/users/1/edit', 'GET', '127.0.0.1', '{"_pjax":"#pjax-container"}', '2017-06-09 02:41:47', '2017-06-09 02:41:47'),
+(81, 1, 'admin/auth/users/1', 'PUT', '127.0.0.1', '{"username":"admin","name":"Administrator","password":"$2y$10$mu5dV6cYxVISlX6MHNeU2.Sr3pHCroXSKEMVuF9Ld.WutIMYDz5la","password_confirmation":"$2y$10$mu5dV6cYxVISlX6MHNeU2.Sr3pHCroXSKEMVuF9Ld.WutIMYDz5la","roles":["1",""],"permissions":[""],"_token":"4PTBWDZAAU437V77sHoDgmriJgMlf6E7CxiPSaNY","_method":"PUT","_previous_":"http:\\/\\/myblog.test.com\\/admin\\/auth\\/users"}', '2017-06-09 02:42:17', '2017-06-09 02:42:17'),
+(82, 1, 'admin/auth/users', 'GET', '127.0.0.1', '[]', '2017-06-09 02:42:17', '2017-06-09 02:42:17'),
+(83, 1, 'admin/auth/users/1/edit', 'GET', '127.0.0.1', '{"_pjax":"#pjax-container"}', '2017-06-09 02:42:19', '2017-06-09 02:42:19'),
+(84, 1, 'admin/auth/users', 'GET', '127.0.0.1', '{"_pjax":"#pjax-container"}', '2017-06-09 02:43:34', '2017-06-09 02:43:34'),
+(85, 1, 'admin/auth/users/1/edit', 'GET', '127.0.0.1', '{"_pjax":"#pjax-container"}', '2017-06-09 02:43:36', '2017-06-09 02:43:36'),
+(86, 1, 'admin', 'GET', '127.0.0.1', '{"_pjax":"#pjax-container"}', '2017-06-09 02:43:39', '2017-06-09 02:43:39'),
+(87, 1, 'admin/banner', 'GET', '127.0.0.1', '[]', '2017-06-09 02:43:42', '2017-06-09 02:43:42'),
+(88, 1, 'admin/banner/1/edit', 'GET', '127.0.0.1', '{"_pjax":"#pjax-container"}', '2017-06-09 02:43:45', '2017-06-09 02:43:45'),
+(89, 1, 'admin/banner/1', 'PUT', '127.0.0.1', '{"desc":"1","_token":"4PTBWDZAAU437V77sHoDgmriJgMlf6E7CxiPSaNY","_method":"PUT","_previous_":"http:\\/\\/myblog.test.com\\/admin\\/banner"}', '2017-06-09 02:43:51', '2017-06-09 02:43:51'),
+(90, 1, 'admin/banner', 'GET', '127.0.0.1', '[]', '2017-06-09 02:43:51', '2017-06-09 02:43:51'),
+(91, 1, 'admin/banner', 'GET', '127.0.0.1', '[]', '2017-06-09 02:45:35', '2017-06-09 02:45:35'),
+(92, 1, 'admin/banner/1/edit', 'GET', '127.0.0.1', '{"_pjax":"#pjax-container"}', '2017-06-09 02:45:43', '2017-06-09 02:45:43'),
+(93, 1, 'admin/banner/1', 'PUT', '127.0.0.1', '{"desc":"1","_token":"4PTBWDZAAU437V77sHoDgmriJgMlf6E7CxiPSaNY","_method":"PUT","_previous_":"http:\\/\\/myblog.test.com\\/admin\\/banner"}', '2017-06-09 02:45:54', '2017-06-09 02:45:54'),
+(94, 1, 'admin/banner', 'GET', '127.0.0.1', '[]', '2017-06-09 02:45:54', '2017-06-09 02:45:54'),
+(95, 1, 'admin/banner/1/edit', 'GET', '127.0.0.1', '{"_pjax":"#pjax-container"}', '2017-06-09 02:46:39', '2017-06-09 02:46:39'),
+(96, 1, 'admin/banner/1', 'PUT', '127.0.0.1', '{"desc":"1","_token":"4PTBWDZAAU437V77sHoDgmriJgMlf6E7CxiPSaNY","_method":"PUT","_previous_":"http:\\/\\/myblog.test.com\\/admin\\/banner"}', '2017-06-09 02:46:44', '2017-06-09 02:46:44'),
+(97, 1, 'admin/banner', 'GET', '127.0.0.1', '[]', '2017-06-09 02:46:45', '2017-06-09 02:46:45'),
+(98, 1, 'admin/banner', 'GET', '127.0.0.1', '[]', '2017-06-09 02:48:40', '2017-06-09 02:48:40'),
+(99, 1, 'admin/banner/1/edit', 'GET', '127.0.0.1', '{"_pjax":"#pjax-container"}', '2017-06-09 02:48:44', '2017-06-09 02:48:44'),
+(100, 1, 'admin/banner/1', 'PUT', '127.0.0.1', '{"href":"http:\\/\\/baidu.com1","desc":"1","_token":"4PTBWDZAAU437V77sHoDgmriJgMlf6E7CxiPSaNY","_method":"PUT","_previous_":"http:\\/\\/myblog.test.com\\/admin\\/banner"}', '2017-06-09 02:48:47', '2017-06-09 02:48:47'),
+(101, 1, 'admin/banner/1/edit', 'GET', '127.0.0.1', '[]', '2017-06-09 02:48:48', '2017-06-09 02:48:48'),
+(102, 1, 'admin/banner/1', 'PUT', '127.0.0.1', '{"href":"http:\\/\\/baidu.com\\/a","desc":"1","_token":"4PTBWDZAAU437V77sHoDgmriJgMlf6E7CxiPSaNY","_method":"PUT"}', '2017-06-09 02:48:57', '2017-06-09 02:48:57'),
+(103, 1, 'admin/banner', 'GET', '127.0.0.1', '[]', '2017-06-09 02:48:57', '2017-06-09 02:48:57'),
+(104, 1, 'admin/banner/1/edit', 'GET', '127.0.0.1', '{"_pjax":"#pjax-container"}', '2017-06-09 02:49:03', '2017-06-09 02:49:03'),
+(105, 1, 'admin/banner/1', 'PUT', '127.0.0.1', '{"href":"http:\\/\\/baidu.com\\/a","desc":"2","_token":"4PTBWDZAAU437V77sHoDgmriJgMlf6E7CxiPSaNY","_method":"PUT","_previous_":"http:\\/\\/myblog.test.com\\/admin\\/banner"}', '2017-06-09 02:49:07', '2017-06-09 02:49:07'),
+(106, 1, 'admin/banner', 'GET', '127.0.0.1', '[]', '2017-06-09 02:49:07', '2017-06-09 02:49:07'),
+(107, 1, 'admin/banner/2/edit', 'GET', '127.0.0.1', '{"_pjax":"#pjax-container"}', '2017-06-09 02:49:12', '2017-06-09 02:49:12'),
+(108, 1, 'admin/banner/2', 'PUT', '127.0.0.1', '{"href":"http:\\/\\/baidu.com","desc":"1","_token":"4PTBWDZAAU437V77sHoDgmriJgMlf6E7CxiPSaNY","_method":"PUT","_previous_":"http:\\/\\/myblog.test.com\\/admin\\/banner"}', '2017-06-09 02:57:15', '2017-06-09 02:57:15'),
+(109, 1, 'admin/banner', 'GET', '127.0.0.1', '[]', '2017-06-09 02:57:15', '2017-06-09 02:57:15'),
+(110, 1, 'admin/banner/1/edit', 'GET', '127.0.0.1', '{"_pjax":"#pjax-container"}', '2017-06-09 02:57:19', '2017-06-09 02:57:19'),
+(111, 1, 'admin/banner/1', 'PUT', '127.0.0.1', '{"href":"http:\\/\\/baidu.com\\/a","desc":"2","_token":"4PTBWDZAAU437V77sHoDgmriJgMlf6E7CxiPSaNY","_method":"PUT","_previous_":"http:\\/\\/myblog.test.com\\/admin\\/banner"}', '2017-06-09 02:57:34', '2017-06-09 02:57:34'),
+(112, 1, 'admin/banner', 'GET', '127.0.0.1', '[]', '2017-06-09 02:57:34', '2017-06-09 02:57:34'),
+(113, 1, 'admin/banner/1/edit', 'GET', '127.0.0.1', '{"_pjax":"#pjax-container"}', '2017-06-09 02:58:00', '2017-06-09 02:58:00'),
+(114, 1, 'admin/banner/1', 'PUT', '127.0.0.1', '{"href":"http:\\/\\/baidu.com\\/a","desc":"2","_token":"4PTBWDZAAU437V77sHoDgmriJgMlf6E7CxiPSaNY","_method":"PUT","_previous_":"http:\\/\\/myblog.test.com\\/admin\\/banner"}', '2017-06-09 02:58:06', '2017-06-09 02:58:06'),
+(115, 1, 'admin/banner', 'GET', '127.0.0.1', '[]', '2017-06-09 02:58:06', '2017-06-09 02:58:06');
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `admin_permissions`
+--
+
+CREATE TABLE `admin_permissions` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `name` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
+  `slug` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `admin_roles`
+--
+
+CREATE TABLE `admin_roles` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `name` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
+  `slug` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- 转存表中的数据 `admin_roles`
+--
+
+INSERT INTO `admin_roles` (`id`, `name`, `slug`, `created_at`, `updated_at`) VALUES
+(1, 'Administrator', 'administrator', '2017-06-09 01:57:55', '2017-06-09 01:57:55');
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `admin_role_menu`
+--
+
+CREATE TABLE `admin_role_menu` (
+  `role_id` int(11) NOT NULL,
+  `menu_id` int(11) NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- 转存表中的数据 `admin_role_menu`
+--
+
+INSERT INTO `admin_role_menu` (`role_id`, `menu_id`, `created_at`, `updated_at`) VALUES
+(1, 2, NULL, NULL),
+(1, 8, NULL, NULL);
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `admin_role_permissions`
+--
+
+CREATE TABLE `admin_role_permissions` (
+  `role_id` int(11) NOT NULL,
+  `permission_id` int(11) NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `admin_role_users`
+--
+
+CREATE TABLE `admin_role_users` (
+  `role_id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- 转存表中的数据 `admin_role_users`
+--
+
+INSERT INTO `admin_role_users` (`role_id`, `user_id`, `created_at`, `updated_at`) VALUES
+(1, 1, NULL, NULL);
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `admin_users`
+--
+
+CREATE TABLE `admin_users` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `username` varchar(190) COLLATE utf8_unicode_ci NOT NULL,
+  `password` varchar(60) COLLATE utf8_unicode_ci NOT NULL,
+  `name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `avatar` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `remember_token` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- 转存表中的数据 `admin_users`
+--
+
+INSERT INTO `admin_users` (`id`, `username`, `password`, `name`, `avatar`, `remember_token`, `created_at`, `updated_at`) VALUES
+(1, 'admin', '$2y$10$mu5dV6cYxVISlX6MHNeU2.Sr3pHCroXSKEMVuF9Ld.WutIMYDz5la', 'Administrator', 'image/Array[oldname].jpg', NULL, '2017-06-09 01:57:55', '2017-06-09 02:42:17');
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `admin_user_permissions`
+--
+
+CREATE TABLE `admin_user_permissions` (
+  `user_id` int(11) NOT NULL,
+  `permission_id` int(11) NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -41,8 +340,8 @@ CREATE TABLE `banners` (
 --
 
 INSERT INTO `banners` (`id`, `image`, `href`, `created_at`, `updated_at`, `desc`, `deleted_at`) VALUES
-(1, '/upload/201610/18/201610181557196870.jpg', 'http://baidu.com', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '1', '0000-00-00 00:00:00'),
-(2, '/upload/201610/24/201610241227558789.jpg', 'http://baidu.com', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '1', '0000-00-00 00:00:00');
+(1, 'image/8c45f1ea6fbd9d2bf61c0da97ce5fb2a.jpeg', 'http://baidu.com/a', '0000-00-00 00:00:00', '2017-06-09 10:58:06', '2', '0000-00-00 00:00:00'),
+(2, 'image/b92e2e96a764102352c57ab2de7a282c.jpeg', 'http://baidu.com', '0000-00-00 00:00:00', '2017-06-09 10:57:15', '1', '0000-00-00 00:00:00');
 
 -- --------------------------------------------------------
 
@@ -158,6 +457,26 @@ INSERT INTO `menus` (`id`, `name`, `href`, `sort`, `created_at`, `updated_at`, `
 -- --------------------------------------------------------
 
 --
+-- 表的结构 `migrations`
+--
+
+CREATE TABLE `migrations` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `migration` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `batch` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- 转存表中的数据 `migrations`
+--
+
+INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
+(1, '2016_01_04_173148_create_administrators_table', 1),
+(2, '2016_01_04_173148_create_admin_tables', 2);
+
+-- --------------------------------------------------------
+
+--
 -- 表的结构 `pages`
 --
 
@@ -200,7 +519,7 @@ CREATE TABLE `posts` (
 --
 
 INSERT INTO `posts` (`id`, `category_id`, `menu_id`, `image`, `title`, `description`, `slug`, `content`, `html_content`, `status`, `view_count`, `created_at`, `updated_at`, `published_at`, `deleted_at`) VALUES
-(1, 1, 1, 'upload/201704/25/201704250929411769.jpg', 'Dolores nostrum perferendis dicta vero aperiam in animi.', 'Sit sed debitis quibusdam voluptate dolorem nisi.', 'quia-adipisci-laboriosam-qui-velit-quia-sequi-quaerat-sed', 'Tempore ducimus laborum aut nesciunt et sunt. Est qui veniam adipisci sit enim et eius. Neque iure sit dolorem dolore neque sit aliquid.\n\nEst voluptates explicabo quod at. Voluptatem incidunt quam sequi quia enim. Cumque dignissimos quia autem quo eum soluta dolore aut.\n\nCumque voluptatibus dolorem corporis sunt et. Harum suscipit sed laborum libero molestias in assumenda. Architecto totam aut quia ut.\n\nVelit rem blanditiis sit ut incidunt omnis. Amet assumenda aliquam rerum laudantium quo sed quisquam in. Hic quia et rerum eligendi ut. Magni ea enim est aspernatur.\n\nQui sint nulla rerum impedit modi autem rerum. Commodi consequatur velit sit quae repellendus consequuntur et. Tenetur ut consectetur nisi iste quia dolor quo.\n\nQuis vel dolores qui. Sequi qui autem laborum eius error. Nihil dignissimos nulla error enim. Eos repudiandae consectetur accusamus ea distinctio ratione aspernatur.\n\nRecusandae temporibus qui debitis expedita rerum consequatur dolore rerum. Iure doloremque numquam asperiores eum ratione qui. Et quia corporis excepturi eum omnis labore atque nihil.\n\nDolorum dignissimos velit aspernatur possimus. Dignissimos eum porro excepturi enim impedit corrupti veritatis. Qui eaque dolorum perspiciatis debitis. Molestiae aliquid cumque voluptatibus autem illo aut consequatur.\n\nQuod sed deleniti rerum provident ex nam voluptatum. Quia debitis consequuntur est quasi dolorem. Necessitatibus aspernatur distinctio incidunt rerum aspernatur non necessitatibus.\n\nInventore non tempore nobis. Quia dolores sunt sit ex deserunt dolores accusamus. Corrupti fugit harum est voluptas ex quisquam. Ab veritatis accusamus doloremque nostrum autem qui placeat illum.\n\nEx vel dolore minus laborum. Qui rerum non laudantium iste non. Sint neque occaecati reiciendis cum fugiat.\n\nConsequatur qui totam delectus aliquid laudantium voluptates nihil. Ipsa officiis et nostrum sed iste cumque velit. Fuga temporibus minus recusandae doloribus. Occaecati autem tempora quas et.\n\nDignissimos aut minus maxime similique officiis voluptas. Sit iste beatae ex quo quia maxime nisi. Voluptatum voluptate qui blanditiis qui alias id temporibus. Provident repellendus rerum veritatis quo dolore non.\n\nQuo dolor fuga possimus voluptatum et. Quam ipsum cumque iusto temporibus error tempora velit.', 'Tempore ducimus laborum aut nesciunt et sunt. Est qui veniam adipisci sit enim et eius. Neque iure sit dolorem dolore neque sit aliquid.\n\nEst voluptates explicabo quod at. Voluptatem incidunt quam sequi quia enim. Cumque dignissimos quia autem quo eum soluta dolore aut.\n\nCumque voluptatibus dolorem corporis sunt et. Harum suscipit sed laborum libero molestias in assumenda. Architecto totam aut quia ut.\n\nVelit rem blanditiis sit ut incidunt omnis. Amet assumenda aliquam rerum laudantium quo sed quisquam in. Hic quia et rerum eligendi ut. Magni ea enim est aspernatur.\n\nQui sint nulla rerum impedit modi autem rerum. Commodi consequatur velit sit quae repellendus consequuntur et. Tenetur ut consectetur nisi iste quia dolor quo.\n\nQuis vel dolores qui. Sequi qui autem laborum eius error. Nihil dignissimos nulla error enim. Eos repudiandae consectetur accusamus ea distinctio ratione aspernatur.\n\nRecusandae temporibus qui debitis expedita rerum consequatur dolore rerum. Iure doloremque numquam asperiores eum ratione qui. Et quia corporis excepturi eum omnis labore atque nihil.\n\nDolorum dignissimos velit aspernatur possimus. Dignissimos eum porro excepturi enim impedit corrupti veritatis. Qui eaque dolorum perspiciatis debitis. Molestiae aliquid cumque voluptatibus autem illo aut consequatur.\n\nQuod sed deleniti rerum provident ex nam voluptatum. Quia debitis consequuntur est quasi dolorem. Necessitatibus aspernatur distinctio incidunt rerum aspernatur non necessitatibus.\n\nInventore non tempore nobis. Quia dolores sunt sit ex deserunt dolores accusamus. Corrupti fugit harum est voluptas ex quisquam. Ab veritatis accusamus doloremque nostrum autem qui placeat illum.\n\nEx vel dolore minus laborum. Qui rerum non laudantium iste non. Sint neque occaecati reiciendis cum fugiat.\n\nConsequatur qui totam delectus aliquid laudantium voluptates nihil. Ipsa officiis et nostrum sed iste cumque velit. Fuga temporibus minus recusandae doloribus. Occaecati autem tempora quas et.\n\nDignissimos aut minus maxime similique officiis voluptas. Sit iste beatae ex quo quia maxime nisi. Voluptatum voluptate qui blanditiis qui alias id temporibus. Provident repellendus rerum veritatis quo dolore non.\n\nQuo dolor fuga possimus voluptatum et. Quam ipsum cumque iusto temporibus error tempora velit.', 1, 0, '2017-05-27 06:32:11', '2017-05-27 06:32:11', '2009-08-20 02:35:53', NULL),
+(1, 1, 1, 'upload/201704/25/201704250929411769.jpg', 'Dolores nostrum perferendis dicta vero aperiam in animi.', 'Sit sed debitis quibusdam voluptate dolorem nisi.', 'quia-adipisci-laboriosam-qui-velit-quia-sequi-quaerat-sed', 'Tempore ducimus laborum aut nesciunt et sunt. Est qui veniam adipisci sit enim et eius. Neque iure sit dolorem dolore neque sit aliquid.\n\nEst voluptates explicabo quod at. Voluptatem incidunt quam sequi quia enim. Cumque dignissimos quia autem quo eum soluta dolore aut.\n\nCumque voluptatibus dolorem corporis sunt et. Harum suscipit sed laborum libero molestias in assumenda. Architecto totam aut quia ut.\n\nVelit rem blanditiis sit ut incidunt omnis. Amet assumenda aliquam rerum laudantium quo sed quisquam in. Hic quia et rerum eligendi ut. Magni ea enim est aspernatur.\n\nQui sint nulla rerum impedit modi autem rerum. Commodi consequatur velit sit quae repellendus consequuntur et. Tenetur ut consectetur nisi iste quia dolor quo.\n\nQuis vel dolores qui. Sequi qui autem laborum eius error. Nihil dignissimos nulla error enim. Eos repudiandae consectetur accusamus ea distinctio ratione aspernatur.\n\nRecusandae temporibus qui debitis expedita rerum consequatur dolore rerum. Iure doloremque numquam asperiores eum ratione qui. Et quia corporis excepturi eum omnis labore atque nihil.\n\nDolorum dignissimos velit aspernatur possimus. Dignissimos eum porro excepturi enim impedit corrupti veritatis. Qui eaque dolorum perspiciatis debitis. Molestiae aliquid cumque voluptatibus autem illo aut consequatur.\n\nQuod sed deleniti rerum provident ex nam voluptatum. Quia debitis consequuntur est quasi dolorem. Necessitatibus aspernatur distinctio incidunt rerum aspernatur non necessitatibus.\n\nInventore non tempore nobis. Quia dolores sunt sit ex deserunt dolores accusamus. Corrupti fugit harum est voluptas ex quisquam. Ab veritatis accusamus doloremque nostrum autem qui placeat illum.\n\nEx vel dolore minus laborum. Qui rerum non laudantium iste non. Sint neque occaecati reiciendis cum fugiat.\n\nConsequatur qui totam delectus aliquid laudantium voluptates nihil. Ipsa officiis et nostrum sed iste cumque velit. Fuga temporibus minus recusandae doloribus. Occaecati autem tempora quas et.\n\nDignissimos aut minus maxime similique officiis voluptas. Sit iste beatae ex quo quia maxime nisi. Voluptatum voluptate qui blanditiis qui alias id temporibus. Provident repellendus rerum veritatis quo dolore non.\n\nQuo dolor fuga possimus voluptatum et. Quam ipsum cumque iusto temporibus error tempora velit.', 'Tempore ducimus laborum aut nesciunt et sunt. Est qui veniam adipisci sit enim et eius. Neque iure sit dolorem dolore neque sit aliquid.\n\nEst voluptates explicabo quod at. Voluptatem incidunt quam sequi quia enim. Cumque dignissimos quia autem quo eum soluta dolore aut.\n\nCumque voluptatibus dolorem corporis sunt et. Harum suscipit sed laborum libero molestias in assumenda. Architecto totam aut quia ut.\n\nVelit rem blanditiis sit ut incidunt omnis. Amet assumenda aliquam rerum laudantium quo sed quisquam in. Hic quia et rerum eligendi ut. Magni ea enim est aspernatur.\n\nQui sint nulla rerum impedit modi autem rerum. Commodi consequatur velit sit quae repellendus consequuntur et. Tenetur ut consectetur nisi iste quia dolor quo.\n\nQuis vel dolores qui. Sequi qui autem laborum eius error. Nihil dignissimos nulla error enim. Eos repudiandae consectetur accusamus ea distinctio ratione aspernatur.\n\nRecusandae temporibus qui debitis expedita rerum consequatur dolore rerum. Iure doloremque numquam asperiores eum ratione qui. Et quia corporis excepturi eum omnis labore atque nihil.\n\nDolorum dignissimos velit aspernatur possimus. Dignissimos eum porro excepturi enim impedit corrupti veritatis. Qui eaque dolorum perspiciatis debitis. Molestiae aliquid cumque voluptatibus autem illo aut consequatur.\n\nQuod sed deleniti rerum provident ex nam voluptatum. Quia debitis consequuntur est quasi dolorem. Necessitatibus aspernatur distinctio incidunt rerum aspernatur non necessitatibus.\n\nInventore non tempore nobis. Quia dolores sunt sit ex deserunt dolores accusamus. Corrupti fugit harum est voluptas ex quisquam. Ab veritatis accusamus doloremque nostrum autem qui placeat illum.\n\nEx vel dolore minus laborum. Qui rerum non laudantium iste non. Sint neque occaecati reiciendis cum fugiat.\n\nConsequatur qui totam delectus aliquid laudantium voluptates nihil. Ipsa officiis et nostrum sed iste cumque velit. Fuga temporibus minus recusandae doloribus. Occaecati autem tempora quas et.\n\nDignissimos aut minus maxime similique officiis voluptas. Sit iste beatae ex quo quia maxime nisi. Voluptatum voluptate qui blanditiis qui alias id temporibus. Provident repellendus rerum veritatis quo dolore non.\n\nQuo dolor fuga possimus voluptatum et. Quam ipsum cumque iusto temporibus error tempora velit.', 1, 10, '2017-05-27 06:32:11', '2017-06-08 20:22:18', '2009-08-20 02:35:53', NULL),
 (2, 1, 1, 'upload/201704/25/201704250929411769.jpg', 'Aliquid sit doloribus totam est sit.', 'Culpa esse fuga et cumque repudiandae odit illum.', 'perferendis-in-molestiae-qui-autem', 'Ut sint sed ut voluptas inventore odit assumenda. Dolores est voluptatem nihil sed asperiores tenetur qui. Maxime sed sed laudantium perspiciatis minus cumque asperiores est. Vitae quae et et commodi animi consequatur qui.\n\nOmnis sunt esse consectetur et iste aut. Id doloremque vitae id. Inventore quos placeat vel minus quasi consequatur praesentium fuga. Incidunt est est quisquam voluptatem unde ut quos.\n\nConsequuntur esse eum autem sed. Ratione officiis at culpa consectetur et.\n\nOccaecati nostrum possimus quos eaque molestiae. Voluptatem in exercitationem recusandae eveniet repellat. Sunt earum porro doloremque.\n\nOmnis dignissimos expedita doloribus officia molestiae ut. Excepturi deserunt error impedit commodi consequatur. Nostrum possimus et exercitationem impedit tempore id accusamus. Eos illo totam odit corrupti ipsam.\n\nPraesentium quo sit magni est sint quis ea. Autem et voluptatem et ullam voluptate modi quia ullam. Rerum ab aut voluptas ipsum quo. In minima sunt voluptatem qui corrupti.\n\nRepudiandae dicta et excepturi repudiandae libero ut suscipit. Eaque nesciunt eveniet velit officiis. Doloribus quo et nemo eveniet asperiores provident.', 'Ut sint sed ut voluptas inventore odit assumenda. Dolores est voluptatem nihil sed asperiores tenetur qui. Maxime sed sed laudantium perspiciatis minus cumque asperiores est. Vitae quae et et commodi animi consequatur qui.\n\nOmnis sunt esse consectetur et iste aut. Id doloremque vitae id. Inventore quos placeat vel minus quasi consequatur praesentium fuga. Incidunt est est quisquam voluptatem unde ut quos.\n\nConsequuntur esse eum autem sed. Ratione officiis at culpa consectetur et.\n\nOccaecati nostrum possimus quos eaque molestiae. Voluptatem in exercitationem recusandae eveniet repellat. Sunt earum porro doloremque.\n\nOmnis dignissimos expedita doloribus officia molestiae ut. Excepturi deserunt error impedit commodi consequatur. Nostrum possimus et exercitationem impedit tempore id accusamus. Eos illo totam odit corrupti ipsam.\n\nPraesentium quo sit magni est sint quis ea. Autem et voluptatem et ullam voluptate modi quia ullam. Rerum ab aut voluptas ipsum quo. In minima sunt voluptatem qui corrupti.\n\nRepudiandae dicta et excepturi repudiandae libero ut suscipit. Eaque nesciunt eveniet velit officiis. Doloribus quo et nemo eveniet asperiores provident.', 1, 0, '2017-05-27 06:32:11', '2017-05-27 06:32:11', '2013-10-18 09:30:42', NULL),
 (3, 1, 1, 'upload/201704/25/201704250929411769.jpg', 'Voluptatibus in aut provident suscipit in sunt.', 'Quia consequatur unde autem nemo veniam et error.', 'eveniet-sit-quia-qui-repudiandae-dolor-laudantium', 'Veniam maiores dolorum illo. Est aliquid quidem nesciunt voluptas itaque quis omnis. Pariatur tenetur omnis nesciunt. Repellat sequi sequi numquam nihil.\n\nVoluptatum officia veritatis officia temporibus est ipsam. Ut culpa earum non itaque provident ea qui. Sed at maiores quo. Voluptatem qui sed placeat similique.\n\nAccusantium qui tempore magnam omnis. Eos eum commodi dolorem illum ut id. Saepe quisquam aut porro voluptatem culpa quo repellendus. Voluptas eius incidunt iure ducimus sed eos. Nam ipsam et et repellat dolorem laudantium.\n\nUt cum veniam eum unde corrupti deserunt. Quae doloremque iure aut voluptatem impedit illo. Excepturi vel fugiat aut necessitatibus enim ipsa. Tenetur cupiditate eum cum delectus architecto ullam.\n\nDeleniti est aut esse quisquam in. Fuga dolore beatae repellat accusamus eum quidem vel. Quis aut repellat voluptatem rerum at accusamus repellendus sit. Ab optio autem enim ullam. Minima aut quis similique rem ut ipsam.\n\nMinima animi ut a debitis eaque aut quo. Qui omnis aspernatur velit doloribus. Aspernatur expedita aperiam dignissimos est qui autem eligendi est.\n\nEnim qui quis molestiae ut. Laborum repellat ut et alias reprehenderit eveniet occaecati qui. Similique labore pariatur officiis aut ut. Sit placeat quaerat corporis illo.', 'Veniam maiores dolorum illo. Est aliquid quidem nesciunt voluptas itaque quis omnis. Pariatur tenetur omnis nesciunt. Repellat sequi sequi numquam nihil.\n\nVoluptatum officia veritatis officia temporibus est ipsam. Ut culpa earum non itaque provident ea qui. Sed at maiores quo. Voluptatem qui sed placeat similique.\n\nAccusantium qui tempore magnam omnis. Eos eum commodi dolorem illum ut id. Saepe quisquam aut porro voluptatem culpa quo repellendus. Voluptas eius incidunt iure ducimus sed eos. Nam ipsam et et repellat dolorem laudantium.\n\nUt cum veniam eum unde corrupti deserunt. Quae doloremque iure aut voluptatem impedit illo. Excepturi vel fugiat aut necessitatibus enim ipsa. Tenetur cupiditate eum cum delectus architecto ullam.\n\nDeleniti est aut esse quisquam in. Fuga dolore beatae repellat accusamus eum quidem vel. Quis aut repellat voluptatem rerum at accusamus repellendus sit. Ab optio autem enim ullam. Minima aut quis similique rem ut ipsam.\n\nMinima animi ut a debitis eaque aut quo. Qui omnis aspernatur velit doloribus. Aspernatur expedita aperiam dignissimos est qui autem eligendi est.\n\nEnim qui quis molestiae ut. Laborum repellat ut et alias reprehenderit eveniet occaecati qui. Similique labore pariatur officiis aut ut. Sit placeat quaerat corporis illo.', 1, 0, '2017-05-27 06:32:11', '2017-05-27 06:32:11', '2004-06-28 03:32:41', NULL),
 (4, 1, 1, 'upload/201704/25/201704250929411769.jpg', 'Eum laborum expedita eos sapiente.', 'Nesciunt dolorem consectetur est voluptas assumenda nihil.', 'sunt-omnis-qui-perferendis-ratione-ipsum-perferendis-ut', 'Dolore quis exercitationem nostrum officiis aut harum alias. A nisi sed eligendi delectus et quis animi. Ut ut ipsum maxime consequatur eos delectus nam. Debitis nobis accusantium cum molestiae qui sed adipisci.\n\nA quaerat magni quisquam veritatis doloribus aperiam culpa. Sed necessitatibus voluptate magni totam. Et vel sed magnam odio. Sint eum enim quaerat commodi.\n\nConsectetur blanditiis cum ut beatae. Sit et quia consequatur rerum deserunt.\n\nEx deserunt in sunt suscipit velit. Alias eos velit rerum sint dolorem. Voluptates eveniet ullam et quo. Ratione est soluta quis pariatur.\n\nIure ut ullam tenetur vero non. Nam laborum eos consequuntur temporibus. Porro omnis nulla dolor facilis commodi cum. Excepturi placeat qui voluptatum molestias.\n\nQuo enim omnis placeat in molestias qui praesentium. Veritatis laudantium voluptas voluptatem officia qui dolorem esse rerum. Accusamus dolore nemo quisquam nostrum ab veritatis.\n\nRepellat aut molestiae alias fugiat eligendi maiores adipisci. Nihil aut quas dolorum. Expedita provident voluptatem repudiandae fugit quisquam iure.\n\nDolor repellat dolorem blanditiis sint. Iusto necessitatibus aliquam nihil veniam accusamus id voluptatem. Optio voluptatem quos et quod voluptatem et.\n\nNostrum vitae corporis quisquam blanditiis consequatur aut molestias. Et architecto inventore velit eum qui accusantium aut.\n\nAt voluptatem voluptate commodi sint consectetur qui. Error dolores corrupti a pariatur aut tempore beatae. Aut est possimus molestiae unde. Molestiae adipisci libero dolore alias.\n\nDolores in magnam voluptatibus debitis velit quo. Suscipit ut ullam ducimus dolorem minima eaque. Sunt a non consequatur. Ab est aut iure iure.\n\nEum aliquam quia sunt aperiam quas porro. Voluptatem et velit ullam reprehenderit quasi quasi quidem. Dolor minima ipsam perspiciatis neque nemo mollitia.\n\nFuga excepturi voluptatem quaerat explicabo ex qui iste. Explicabo ratione exercitationem voluptatem. Harum consequatur fugiat incidunt asperiores non et voluptatum esse. Non a est dignissimos non porro natus necessitatibus.\n\nLabore est quam eaque ad. Molestiae nihil molestiae non esse excepturi iste ad. Autem et veniam neque sunt aspernatur odio.\n\nNeque atque vitae quisquam enim quia impedit dolore. Aut voluptates consequuntur non excepturi incidunt. Quos quia quo ut. Eaque incidunt in sunt.', 'Dolore quis exercitationem nostrum officiis aut harum alias. A nisi sed eligendi delectus et quis animi. Ut ut ipsum maxime consequatur eos delectus nam. Debitis nobis accusantium cum molestiae qui sed adipisci.\n\nA quaerat magni quisquam veritatis doloribus aperiam culpa. Sed necessitatibus voluptate magni totam. Et vel sed magnam odio. Sint eum enim quaerat commodi.\n\nConsectetur blanditiis cum ut beatae. Sit et quia consequatur rerum deserunt.\n\nEx deserunt in sunt suscipit velit. Alias eos velit rerum sint dolorem. Voluptates eveniet ullam et quo. Ratione est soluta quis pariatur.\n\nIure ut ullam tenetur vero non. Nam laborum eos consequuntur temporibus. Porro omnis nulla dolor facilis commodi cum. Excepturi placeat qui voluptatum molestias.\n\nQuo enim omnis placeat in molestias qui praesentium. Veritatis laudantium voluptas voluptatem officia qui dolorem esse rerum. Accusamus dolore nemo quisquam nostrum ab veritatis.\n\nRepellat aut molestiae alias fugiat eligendi maiores adipisci. Nihil aut quas dolorum. Expedita provident voluptatem repudiandae fugit quisquam iure.\n\nDolor repellat dolorem blanditiis sint. Iusto necessitatibus aliquam nihil veniam accusamus id voluptatem. Optio voluptatem quos et quod voluptatem et.\n\nNostrum vitae corporis quisquam blanditiis consequatur aut molestias. Et architecto inventore velit eum qui accusantium aut.\n\nAt voluptatem voluptate commodi sint consectetur qui. Error dolores corrupti a pariatur aut tempore beatae. Aut est possimus molestiae unde. Molestiae adipisci libero dolore alias.\n\nDolores in magnam voluptatibus debitis velit quo. Suscipit ut ullam ducimus dolorem minima eaque. Sunt a non consequatur. Ab est aut iure iure.\n\nEum aliquam quia sunt aperiam quas porro. Voluptatem et velit ullam reprehenderit quasi quasi quidem. Dolor minima ipsam perspiciatis neque nemo mollitia.\n\nFuga excepturi voluptatem quaerat explicabo ex qui iste. Explicabo ratione exercitationem voluptatem. Harum consequatur fugiat incidunt asperiores non et voluptatum esse. Non a est dignissimos non porro natus necessitatibus.\n\nLabore est quam eaque ad. Molestiae nihil molestiae non esse excepturi iste ad. Autem et veniam neque sunt aspernatur odio.\n\nNeque atque vitae quisquam enim quia impedit dolore. Aut voluptates consequuntur non excepturi incidunt. Quos quia quo ut. Eaque incidunt in sunt.', 1, 0, '2017-05-27 06:32:11', '2017-05-27 06:32:11', '2004-09-12 23:25:33', NULL),
@@ -459,6 +778,64 @@ INSERT INTO `users` (`id`, `name`, `email`, `password`, `register_from`, `github
 --
 
 --
+-- Indexes for table `admin_menu`
+--
+ALTER TABLE `admin_menu`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `admin_operation_log`
+--
+ALTER TABLE `admin_operation_log`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `admin_operation_log_user_id_index` (`user_id`);
+
+--
+-- Indexes for table `admin_permissions`
+--
+ALTER TABLE `admin_permissions`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `admin_permissions_name_unique` (`name`);
+
+--
+-- Indexes for table `admin_roles`
+--
+ALTER TABLE `admin_roles`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `admin_roles_name_unique` (`name`);
+
+--
+-- Indexes for table `admin_role_menu`
+--
+ALTER TABLE `admin_role_menu`
+  ADD KEY `admin_role_menu_role_id_menu_id_index` (`role_id`,`menu_id`);
+
+--
+-- Indexes for table `admin_role_permissions`
+--
+ALTER TABLE `admin_role_permissions`
+  ADD KEY `admin_role_permissions_role_id_permission_id_index` (`role_id`,`permission_id`);
+
+--
+-- Indexes for table `admin_role_users`
+--
+ALTER TABLE `admin_role_users`
+  ADD KEY `admin_role_users_role_id_user_id_index` (`role_id`,`user_id`);
+
+--
+-- Indexes for table `admin_users`
+--
+ALTER TABLE `admin_users`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `admin_users_username_unique` (`username`);
+
+--
+-- Indexes for table `admin_user_permissions`
+--
+ALTER TABLE `admin_user_permissions`
+  ADD KEY `admin_user_permissions_user_id_permission_id_index` (`user_id`,`permission_id`);
+
+--
 -- Indexes for table `banners`
 --
 ALTER TABLE `banners`
@@ -490,6 +867,12 @@ ALTER TABLE `links`
 -- Indexes for table `menus`
 --
 ALTER TABLE `menus`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `migrations`
+--
+ALTER TABLE `migrations`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -537,6 +920,31 @@ ALTER TABLE `users`
 --
 
 --
+-- 使用表AUTO_INCREMENT `admin_menu`
+--
+ALTER TABLE `admin_menu`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+--
+-- 使用表AUTO_INCREMENT `admin_operation_log`
+--
+ALTER TABLE `admin_operation_log`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=116;
+--
+-- 使用表AUTO_INCREMENT `admin_permissions`
+--
+ALTER TABLE `admin_permissions`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+--
+-- 使用表AUTO_INCREMENT `admin_roles`
+--
+ALTER TABLE `admin_roles`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+--
+-- 使用表AUTO_INCREMENT `admin_users`
+--
+ALTER TABLE `admin_users`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+--
 -- 使用表AUTO_INCREMENT `banners`
 --
 ALTER TABLE `banners`
@@ -561,6 +969,11 @@ ALTER TABLE `links`
 --
 ALTER TABLE `menus`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+--
+-- 使用表AUTO_INCREMENT `migrations`
+--
+ALTER TABLE `migrations`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- 使用表AUTO_INCREMENT `pages`
 --
