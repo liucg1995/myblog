@@ -22,12 +22,12 @@ class ShowController extends Controller
     {
         $bannerlist = $banner->selectAll();
         $list = $post->paginate(5);
-
         return view("index.index", ["list" => $list, 'blist' => $bannerlist]);
     }
 
     public function lists(PostRepository $post)
     {
+
         $href = FRequest::segment(1);
         $val = FRequest::segment(2);
         switch ($href) {
@@ -52,24 +52,22 @@ class ShowController extends Controller
 
     public function detail(PostRepository $post, $id)
     {
-
         $detail = $post->find($id);
+        $post->increNum($id);
         return view("index.detail", ["detail" => $detail]);
-
     }
 
     public function search(Request $request, PostRepository $post)
     {
+
         $keyword = $request->keywords;
         $list = $post->wherepaginate(7, $keyword);
         $list->appends(["keywords" => $keyword]);
         return view("index.list", ["list" => $list, 'title' => $keyword]);
-
     }
 
     public function comment(Request $request)
     {
-
         $author = $request->author;
         $email = $request->email;
         $comment_content = $request->comment;
@@ -77,11 +75,9 @@ class ShowController extends Controller
             echo json_encode("0");
         }else{
             $comment= new  Comment();
-//            $comment->commentable_id="11";
             $comment->username = $author;
             $comment->email = $email;
             $comment->content = $comment_content;
-//            $comment->commentable_type='App\Models\Post';
             $comment->ip_id=$request->ip();
             $post = new Post();
            $info =  $post->where('id', $request->id)->firstOrFail();
@@ -92,8 +88,5 @@ class ShowController extends Controller
                 echo json_encode("2s");
             }
         }
-
     }
-
-
 }

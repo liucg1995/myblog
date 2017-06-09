@@ -22,8 +22,8 @@ class PostRepository extends Repository {
     {
         return $this->model->all();
     }
-    public function increNum($where=array()){
-        return $this->model->where($where)->increment("view_count");
+    public function increNum($id=""){
+        return $this->model->where("id",$id)->increment("view_count");
     }
     public function hotPosts(){
         return $this->model->orderby("view_count","desc")->take(7)->get();
