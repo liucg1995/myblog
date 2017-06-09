@@ -23,4 +23,4 @@ Encore\Admin\Form::forget(['map']);
 use App\Admin\Extensions\PHPEditor;
 use Encore\Admin\Form;
 
-//Form::extend('ueditor', PHPEditor::class);
+Form::extend('ueditor', PHPEditor::class);

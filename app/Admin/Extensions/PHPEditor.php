@@ -19,12 +19,16 @@ class PHPEditor extends Field
     protected static $js = [
         '/packages/ueditor/ueditor.all.min.js',
         '/packages/ueditor/ueditor.config.js',
-        '/packages/ueditor/ueditor.parse.min.js',
     ];
 
     public function render()
     {
-        $this->script =  " var ue = UE.getEditor('{$this->id}')";
+        $this->script = <<<EOT
+        
+var ue = UE.getEditor('content');
+
+
+EOT;
 
         return parent::render();
 
