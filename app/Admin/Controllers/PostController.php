@@ -142,7 +142,7 @@ class PostController extends Controller
             $form->text('description');
 
 //            $form->text('profile.postcode')->help('Please input your postcode');
-            $form->textarea('content')->rows(15);
+            $form->editor('content');
 //            $form->map('profile.latitude', 'profile.longitude', 'Position');
 //            $form->color('profile.color');
 //            $form->datetime('profile.start_at');
