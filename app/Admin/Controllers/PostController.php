@@ -127,39 +127,21 @@ class PostController extends Controller
         return Admin::form(Post::class, function (Form $form) {
             $form->disableDeletion();
 
-//            $form->display('id', 'ID');
-//            $form->text('username');
-//            $form->email('email')->rules('required');
-//            $form->mobile('mobile');
-            $form->image('image')->help('上传头像', 'fa-image')->uniqueName();
-//            $form->ignore(['password_confirmation']);
-//            $form->password('password')->rules('confirmed');
-//            $form->password('password_confirmation');
+            $form->image('image')->help('上传图片', 'fa-image')->uniqueName()->rules("dimensions:min_width=300,min_height=200,ratio=3/2|mimes:jpeg,jpg,gif,png");
 
-//            $form->divide();
 //
-            $form->text('title');
-            $form->text('description');
+            $form->text('title',"标题");
+            $form->text('description',"描述");
 
-//            $form->text('profile.postcode')->help('Please input your postcode');
-            $form->ueditor('content');
-//            $form->map('profile.latitude', 'profile.longitude', 'Position');
-//            $form->color('profile.color');
-//            $form->datetime('profile.start_at');
-//            $form->datetime('profile.end_at');
+            $form->ueditor('content','内容');
 
-//           Category::
 
-            $form->multipleSelect('tags', 'Tags')->options(Tag::get()->pluck('name', 'id')); //->rules('max:10|min:3');
-            $form->select('category_id', 'category')->options(Category::get()->pluck('name', 'id')); //->rules('max:10|min:3');
-            $form->select('menu_id', 'menu')->options(Menu::get()->pluck('name', 'id')); //->rules('max:10|min:3');
+            $form->multipleSelect('tags', '标签')->options(Tag::get()->pluck('name', 'id')); //->rules('max:10|min:3');
+            $form->select('category_id', '分类')->options(Category::get()->pluck('name', 'id')); //->rules('max:10|min:3');
+            $form->select('menu_id', '菜单')->options(Menu::get()->pluck('name', 'id')); //->rules('max:10|min:3');
 
             $form->number('view_count');
 
-//            $form->display('created_at', 'Created At');
-//            $form->display('updated_at', 'Updated At');
-
-//            $form->html('<a html-field>html...</a>');
         });
     }
 }

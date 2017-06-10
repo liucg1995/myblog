@@ -18,5 +18,6 @@ Route::group([
     $router->resource("tag",TagController::class);
     $router->resource("post",PostController::class);
     $router->resource("comment",CommentController::class);
+    $router->resource("link",LinkController::class);
 
 });

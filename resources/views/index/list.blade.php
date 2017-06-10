@@ -13,7 +13,7 @@
             @forelse($list as $val)
                 <article class="excerpt excerpt-8"><a class="focus" href="{{url("detail/".$val->id)}}"
                                                       title="{{$val->title}}" target="_blank">
-                        <img class="thumb" src="{{asset($val->image)}}"
+                        <img class="thumb" src="{{asset("storage/".$val->image)}}"
 
                              alt="{{$val->title}}"/></a>
                     <header><a class="cat" href="{{url("detail/".$val->id)}}" title="资讯分享">资讯分享<i></i></a>
