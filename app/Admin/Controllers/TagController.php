@@ -24,8 +24,7 @@ class TagController extends Controller
     {
 
         return Admin::content(function (Content $content) {
-            $content->header('All users');
-            $content->description('description');
+            $content->header('标签列表');
 
             $content->body($this->grid());
         });
@@ -41,8 +40,7 @@ class TagController extends Controller
     public function edit($id)
     {
         return Admin::content(function (Content $content) use ($id) {
-            $content->header('Edit user');
-            $content->description('description');
+            $content->header('修改标签');
 
             $content->body($this->form()->edit($id));
         });
@@ -56,7 +54,7 @@ class TagController extends Controller
     public function create()
     {
         return Admin::content(function (Content $content) {
-            $content->header('Create user');
+            $content->header('添加标签');
 
             $content->body($this->form());
         });

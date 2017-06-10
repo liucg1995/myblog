@@ -13,6 +13,22 @@ class Comment extends Model
 {
     use SoftDeletes;
 
+    public function setOptionsAttribute($options)
+    {
+        if (is_array($options)) {
+            $this->attributes['options'] = implode(',', $options);
+        }
+    }
+
+    public function getOptionsAttribute($options)
+    {
+        if (is_string($options)) {
+            return explode(',', $options);
+        }
+
+        return $options;
+    }
+
     protected $fillable = ['content'];
     /**
      * The attributes that should be mutated to dates.

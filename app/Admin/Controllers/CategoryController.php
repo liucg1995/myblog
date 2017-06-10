@@ -22,8 +22,7 @@ class CategoryController extends Controller
     public function index()
     {
         return Admin::content(function (Content $content) {
-            $content->header('All users');
-            $content->description('description');
+            $content->header('分类列表');
 
             $content->body($this->grid());
         });
@@ -39,8 +38,7 @@ class CategoryController extends Controller
     public function edit($id)
     {
         return Admin::content(function (Content $content) use ($id) {
-            $content->header('Edit user');
-            $content->description('description');
+            $content->header('修改分类');
 
             $content->body($this->form()->edit($id));
         });
@@ -54,7 +52,7 @@ class CategoryController extends Controller
     public function create()
     {
         return Admin::content(function (Content $content) {
-            $content->header('Create user');
+            $content->header('添加分类');
 
             $content->body($this->form());
         });

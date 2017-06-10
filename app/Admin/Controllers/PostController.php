@@ -27,8 +27,7 @@ class PostController extends Controller
     public function index()
     {
         return Admin::content(function (Content $content) {
-            $content->header('All users');
-            $content->description('description');
+            $content->header('文章列表');
 
             $content->body($this->grid());
         });
@@ -44,8 +43,7 @@ class PostController extends Controller
     public function edit($id)
     {
         return Admin::content(function (Content $content) use ($id) {
-            $content->header('Edit user');
-            $content->description('description');
+            $content->header('修改文章');
 
             $content->body($this->form()->edit($id));
         });
@@ -59,7 +57,7 @@ class PostController extends Controller
     public function create()
     {
         return Admin::content(function (Content $content) {
-            $content->header('Create user');
+            $content->header('添加文章');
 
             $content->body($this->form());
         });
@@ -79,14 +77,6 @@ class PostController extends Controller
             $grid->id('ID')->sortable();
             $grid->category()->name("分类");
             $grid->menu()->name("菜单");
-//            $grid->category_id("分类")->value(function ($category_id) {
-//               $cate =  Category::find($category_id);
-//                return $cate->name;
-//            });
-//            $grid->menu_id("菜单")->value(function ($category_id) {
-//                $cate =  Menu::find($category_id);
-//                return $cate->name;
-//            });
             $grid->tags("标签")->pluck('name')->label();
             $grid->image("图片")->image();
             $grid->title("标题");
@@ -98,6 +88,7 @@ class PostController extends Controller
             },"评论数");
             $grid->created_at("添加时间");
             $grid->filter(function ($filter) {
+                $filter->useModal();
                 $filter->like('title',"标题");
                 $filter->like('description','描述');
                 $filter->is('category_id', '分类')->select(Category::get()->pluck('name', 'id'));
@@ -108,8 +99,7 @@ class PostController extends Controller
                         $query->where('id', $this->input);
                     });
 
-                }, 'Has tag')->select(Tag::get()->pluck('name', 'id'));
-//                $filter->tag()->select(Tag::get()->pluck('name', 'id'));
+                }, '标签')->select(Tag::get()->pluck('name', 'id'));
             });
 
 

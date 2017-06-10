@@ -53,8 +53,15 @@ class ShowController extends Controller
     public function detail(PostRepository $post, $id)
     {
         $detail = $post->find($id);
-        $post->increNum($id);
-        return view("index.detail", ["detail" => $detail]);
+        $comment = $detail->comments()->where("switch",'1')->orderby("updated_at",'desc')->get();
+        if(!isset($_COOKIE["detail".$id])){
+           $res =  $post->increNum($id);
+            if($res){
+                setcookie("detail".$id,"1",time()+3600*24,'/');
+            }
+        }
+
+        return view("index.detail", ["detail" => $detail,"commentlist"=>$comment]);
     }
 
     public function search(Request $request, PostRepository $post)

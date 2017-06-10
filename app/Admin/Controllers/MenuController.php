@@ -22,8 +22,7 @@ class MenuController extends Controller
     public function index()
     {
         return Admin::content(function (Content $content) {
-            $content->header('All users');
-            $content->description('description');
+            $content->header('菜单列表');
 
             $content->body($this->grid());
         });
@@ -39,8 +38,7 @@ class MenuController extends Controller
     public function edit($id)
     {
         return Admin::content(function (Content $content) use ($id) {
-            $content->header('Edit user');
-            $content->description('description');
+            $content->header('修改菜单');
 
             $content->body($this->form()->edit($id));
         });
@@ -54,7 +52,7 @@ class MenuController extends Controller
     public function create()
     {
         return Admin::content(function (Content $content) {
-            $content->header('Create user');
+            $content->header('创建菜单');
 
             $content->body($this->form());
         });
@@ -74,7 +72,7 @@ class MenuController extends Controller
 
             $grid->created_at("添加时间");
 //            $grid->sorts("排序")->orderable();
-            $grid->sorts();
+            $grid->sort()->editable();
 
 
             $grid->filter(function ($filter) {

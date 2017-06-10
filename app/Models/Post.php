@@ -53,7 +53,7 @@ class Post extends Model
 
     public function comment()
     {
-        return $this->belongsToMany(Comment::class, 'commentable');
+        return $this->morphMany(Comment::class, 'commentable')->wherePivot('switch', 1);
     }
 
     public function user()
