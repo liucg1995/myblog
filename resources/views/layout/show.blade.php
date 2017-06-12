@@ -38,18 +38,18 @@
                             class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span>
                 </button>
                 <h1 class="logo hvr-bounce-in"><a href="/" tppabs="" title="木庄网络博客">
-                        <img src="/upload/201610/17/201610171329086541.png"
+                        <img src="/images/logo.png"
                              alt="木庄网络博客"/></a></h1>
             </div>
 
             <div class="collapse navbar-collapse" id="header-navbar" name="index">
-                <form class="navbar-form visible-xs">
+                <form class="navbar-form visible-xs" action="{{url("/search")}}" method="get" >
                     <div class="input-group">
                         <input type="text" class="form-control" onkeydown=""
                                size="35" placeholder="请输入关键字" id="keyword" name="keyword" maxlength="15"
                                autocomplete="off"/>
                         <span class="input-group-btn">
-        <input type="button" value="搜索"
+        <input type="submit" value="搜索"
                class="btn btn-default btn-search">
     </span>
                     </div>
