@@ -5,7 +5,7 @@
     <meta name="renderer" content="webkit">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>木庄网络博客-勤记录 懂分享</title>
+    <title>网络博客</title>
     <meta name="keywords" content="木庄网络博客,IT技术,网络推广,编程技术,网站模板,SEO优化"/>
     <meta name="description" content="木庄网络博客，互联网创业浪潮中关注IT技术、站长、网络推广等资讯以及技术的记录与分享。"/>
     <meta http-equiv="windows-Target " content="_top "/>
