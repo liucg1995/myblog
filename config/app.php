@@ -14,6 +14,8 @@ return [
 
     'name' => 'Laravel',
 
+    'blogname'=>'网络博客',
+
     /*
     |--------------------------------------------------------------------------
     | Application Environment
@@ -179,7 +181,8 @@ return [
         App\Providers\RouteServiceProvider::class,
 
         Encore\Admin\Providers\AdminServiceProvider::class,
-        Zhangmazi\Ueditor\UeditorServiceProivder::class
+        Zhangmazi\Ueditor\UeditorServiceProivder::class,
+        Orangehill\Iseed\IseedServiceProvider::class,
     ],
 
     /*

@@ -14,7 +14,7 @@
         <div class="widget-sentence-content">
             <ul class="plinks ptags">
                 @forelse($tags  as $tag)
-                    @if($tag->posts_count)
+                    {{--@if($tag->posts_count)--}}
                     @if(str_contains(urldecode(request()->getPathInfo()),'tag/'.$tag->id))
                         <li class="active"><a href="{{ route('tag.detail',$tag->id) }}"
                                               title="{{ $tag->name }}">{{ $tag->name }}
@@ -24,7 +24,7 @@
                                title="{{ $tag->name }}">{{ $tag->name }}
                                 <span class="badge">{{ $tag->posts_count }}</span></a></li>
                     @endif
-                    @endif
+                    {{--@endif--}}
                 @empty
                 @endforelse
             </ul>

@@ -9,6 +9,7 @@ namespace App\Repositories;
 
 use App\Models\Category;
 use App\Models\Post;
+use Illuminate\Support\Facades\DB;
 
 class CategoryRepository extends Repository
 {
@@ -33,7 +34,7 @@ class CategoryRepository extends Repository
 
     public function all($columns = array('*'))
     {
-        return $this->model->withCount('posts')->get();
+        return $this->model->whereHas("posts")->withCount(['posts'])->get();
     }
 
     public function paginate($perPage = 15, $columns = array('*'))

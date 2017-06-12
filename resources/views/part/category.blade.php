@@ -15,7 +15,7 @@
             <ul class="plinks ptags">
 
                 @forelse($categories  as $category)
-                    @if($category->posts_count)
+                    {{--@if($category->posts_count)--}}
                     @if(str_contains(urldecode(request()->getPathInfo()),'category/'.$category->id))
                         <li class="active"><a href="{{ route('category.show',$category->id) }}"
                                               title="{{ $category->name }}">{{ $category->name }}
@@ -25,7 +25,7 @@
                                title="{{ $category->name }}">{{ $category->name }}
                                 <span class="badge">{{ $category->posts_count }}</span></a></li>
                     @endif
-                    @endif
+                    {{--@endif--}}
                 @empty
                 @endforelse
             </ul>
