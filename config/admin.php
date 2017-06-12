@@ -5,17 +5,17 @@ return [
     /*
      * Laravel-admin name.
      */
-    'name'      => 'Laravel-admin',
+    'name'      => '博客后台',
 
     /*
      * Logo in admin panel header.
      */
-    'logo'      => '<b>Laravel</b> admin',
+    'logo'      => '博客后台',
 
     /*
      * Mini-logo in admin panel header.
      */
-    'logo-mini' => '<b>La</b>',
+    'logo-mini' => '博客后台',
 
     /*
      * Laravel-admin url prefix.
@@ -30,7 +30,7 @@ return [
     /*
      * Laravel-admin html title.
      */
-    'title'  => 'Admin',
+    'title'  => '博客后台',
 
     /*
      * Laravel-admin auth setting.

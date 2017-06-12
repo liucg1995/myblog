@@ -117,7 +117,7 @@ class PostController extends Controller
         return Admin::form(Post::class, function (Form $form) {
             $form->disableDeletion();
 
-            $form->image('image')->help('上传图片', 'fa-image')->uniqueName()->rules("dimensions:min_width=300,min_height=200,ratio=3/2|mimes:jpeg,jpg,gif,png");
+            $form->image('image',"图片")->help('上传图片 宽度300px,高度200px', 'fa-image')->uniqueName()->rules("dimensions:min_width=300,min_height=200,ratio=3/2|mimes:jpeg,jpg,gif,png");
 
 //
             $form->text('title',"标题");
@@ -130,7 +130,7 @@ class PostController extends Controller
             $form->select('category_id', '分类')->options(Category::get()->pluck('name', 'id')); //->rules('max:10|min:3');
             $form->select('menu_id', '菜单')->options(Menu::get()->pluck('name', 'id')); //->rules('max:10|min:3');
 
-            $form->number('view_count');
+            $form->number('view_count','浏览次数');
 
         });
     }

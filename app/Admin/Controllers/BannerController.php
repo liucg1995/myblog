@@ -67,7 +67,7 @@ class BannerController extends Controller
     {
         return Admin::grid(Banner::class, function (Grid $grid) {
             $grid->id('ID')->sortable();
-            $grid->image()->image();
+            $grid->image("图片")->image();
             $grid->href("链接");
             $grid->desc("描述");
             $grid->created_at("添加时间");
@@ -94,9 +94,9 @@ class BannerController extends Controller
 //            $form->text('username');
 //            $form->email('email')->rules('required');
 //            $form->mobile('mobile');
-            $form->image('image')->help('上传头像', 'fa-image')->uniqueName() ->rules("dimensions:min_width=820,min_height=200,ratio=41/10|mimes:jpeg,jpg,gif,png");
-            $form->url('href');
-            $form->text('desc');
+            $form->image('image')->help('上传头像 宽度820  高度200', 'fa-image')->uniqueName() ->rules("dimensions:min_width=820,min_height=200,ratio=41/10|mimes:jpeg,jpg,gif,png");
+            $form->url('href','链接');
+            $form->text('desc','描述');
 //            $form->ignore(['password_confirmation']);
 //            $form->password('password')->rules('confirmed');
 //            $form->password('password_confirmation');

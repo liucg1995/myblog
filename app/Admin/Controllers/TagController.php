@@ -73,7 +73,7 @@ class TagController extends Controller
             $grid->created_at("添加时间");
 
             $grid->filter(function ($filter) {
-                $filter->like('name');
+                $filter->like('name','标签');
             });
 
 
@@ -90,7 +90,7 @@ class TagController extends Controller
 
         return Admin::form(Tag::class, function (Form $form) {
             $form->disableDeletion();
-            $form->text('name')->rules('required');
+            $form->text('name','标签名称')->rules('required');
 
 
         });

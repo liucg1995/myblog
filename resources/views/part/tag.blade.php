@@ -15,11 +15,11 @@
             <ul class="plinks ptags">
                 @forelse($tags  as $tag)
                     @if(str_contains(urldecode(request()->getPathInfo()),'tag/'.$tag->id))
-                        <li class="active"><a href="{{ route('tag.show',$tag->id) }}"
+                        <li class="active"><a href="{{ route('tag.detail',$tag->id) }}"
                                               title="{{ $tag->name }}">{{ $tag->name }}
                                 <span class="badge">{{ $tag->posts_count }}</span></a></li>
                     @else
-                        <li><a href="{{ route('tag.show',$tag->id) }}"
+                        <li><a href="{{ route('tag.detail',$tag->id) }}"
                                title="{{ $tag->name }}">{{ $tag->name }}
                                 <span class="badge">{{ $tag->posts_count }}</span></a></li>
                     @endif

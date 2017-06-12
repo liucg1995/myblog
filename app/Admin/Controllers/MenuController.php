@@ -76,8 +76,8 @@ class MenuController extends Controller
 
 
             $grid->filter(function ($filter) {
-                $filter->like('name');
-                $filter->like('href');
+                $filter->like('name','菜单');
+                $filter->like('href','链接');
             });
 
 
@@ -95,8 +95,8 @@ class MenuController extends Controller
         return Admin::form(Menu::class, function (Form $form) {
             $form->disableDeletion();
 
-            $form->text('name')->rules('required');;
-            $form->text('href')->rules('required');;
+            $form->text('name','菜单名称')->rules('required');
+            $form->text('href','链接地址')->rules('required');
 
 
         });
