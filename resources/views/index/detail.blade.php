@@ -12,8 +12,8 @@
                               </time>
                         </span>
                         <span class="item article-meta-source" data-toggle="tooltip" data-placement="bottom"
-                              title="来源：木庄网络博客">
-                        <i class="glyphicon glyphicon-globe"></i> 木庄网络博客</span>
+                              title="来源：{{config("app.blogname")}}">
+                        <i class="glyphicon glyphicon-globe"></i> {{config("app.blogname")}}</span>
                         <span class="item article-meta-category" data-toggle="tooltip" data-placement="bottom"
                               title="{{$detail->category->name}}">
                         <i class="glyphicon glyphicon-list"></i>
@@ -22,7 +22,7 @@
                             </a>
                     </span>
                         <span class="item article-meta-views" data-toggle="tooltip" data-placement="bottom"
-                              title="浏览量：138">
+                              title="浏览量：{{$detail->view_count}}">
                         <i class="glyphicon glyphicon-eye-open"></i> {{$detail->view_count}}</span>
                         <span class="item article-meta-comment" data-toggle="tooltip" data-placement="bottom"
                               title="评论量"><i

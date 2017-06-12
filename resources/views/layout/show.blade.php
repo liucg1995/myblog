@@ -6,8 +6,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>网络博客</title>
-    <meta name="keywords" content="木庄网络博客,IT技术,网络推广,编程技术,网站模板,SEO优化"/>
-    <meta name="description" content="木庄网络博客，互联网创业浪潮中关注IT技术、站长、网络推广等资讯以及技术的记录与分享。"/>
+    <meta name="keywords" content="{{config("app.blogname")}},IT技术,网络推广,编程技术,网站模板,SEO优化"/>
+    <meta name="description" content="{{config("app.blogname")}}，互联网创业浪潮中关注IT技术、站长、网络推广等资讯以及技术的记录与分享。"/>
     <meta http-equiv="windows-Target " content="_top "/>
     <link rel="stylesheet" type="text/css" href="/templates/blog/css/bootstrap.min.css"
           tppabs="templates/blog/css/bootstrap.min.css">
@@ -37,9 +37,9 @@
                         data-target="#header-navbar" aria-expanded="false"><span class="sr-only"></span> <span
                             class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span>
                 </button>
-                <h1 class="logo hvr-bounce-in"><a href="/" tppabs="" title="木庄网络博客">
+                <h1 class="logo hvr-bounce-in"><a href="/" tppabs="" title="{{config("app.blogname")}}">
                         <img src="/images/logo.png"
-                             alt="木庄网络博客"/></a></h1>
+                             alt="{{config("app.blogname")}}"/></a></h1>
             </div>
 
             <div class="collapse navbar-collapse" id="header-navbar" name="index">
