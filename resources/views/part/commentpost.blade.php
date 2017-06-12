@@ -1,4 +1,5 @@
-@if(!empty($commentposts))
+{{--{{dd($commentposts)}}--}}
+@if(count($commentposts)>0)
     <div class="widget widget_hot">
         <h3>最新评论文章</h3>
         <ul>

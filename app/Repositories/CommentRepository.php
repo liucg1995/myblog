@@ -39,7 +39,7 @@ class CommentRepository extends Repository
 
     public function commentposts($columns = array('*'))
     {
-        return $this->model->orderby("created_at", "desc")->groupby("commentable_id")->take(5)->get(["commentable_id"]);
+        return $this->model->where("switch",'1')->orderby("created_at", "desc")->groupby("commentable_id")->take(5)->get(["commentable_id"]);
     }
 
     public function paginate($perPage = 15, $columns = array('*'))
