@@ -29,14 +29,9 @@
     <nav class="navbar navbar-default" id="navbar">
         <div class="container">
             <div class="header-topbar hidden-xs link-border">
-                <ul class="site-nav topmenu">
-                    <li><a href="tags/index.htm" tppabs="tags/">标签云</a></li>
-                    <li><a href="bookmark/index.htm" tppabs="bookmark/" rel="nofollow">书签</a></li>
-                    <li><a href="readers/index.htm" tppabs="readers/" rel="nofollow">读者墙</a></li>
-                    <li><a href="rss.html" tppabs="rss.html" title="RSS订阅" rel="nofollow"><i class="fa fa-rss">
-                            </i> RSS订阅</a></li>
+                <ul>
                 </ul>
-                <a href="javascript:;" class="register">勤记录 懂分享</a></div>
+            </div>
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
                         data-target="#header-navbar" aria-expanded="false"><span class="sr-only"></span> <span
@@ -68,13 +63,7 @@
 @yield('content')
 <footer class="footer">
     <div class="container">
-        <p>本站[<a href="index.htm" tppabs="">木庄网络博客</a>]的部分内容来源于网络，若侵犯到您的利益，请联系站长删除！谢谢！Powered By [<a
-                    href="javascript:if(confirm('http://www.dtcms.net/  \n\n??ļ????? Teleport Ultra ??, ?Ϊ ??һ???????????????Ϊ?????????ĵ????  \n\n????????????'))window.location='http://www.dtcms.net/'"
-                    tppabs="http://www.dtcms.net/" target="_blank" rel="nofollow">DTcms</a>] Version 4.0 &nbsp;<a
-                    href="javascript:if(confirm('http://www.miitbeian.gov.cn/  \n\n??ļ????? Teleport Ultra ??, ?Ϊ ??һ???????????????Ϊ?????????ĵ????  \n\n????????????'))window.location='http://www.miitbeian.gov.cn/'"
-                    tppabs="http://www.miitbeian.gov.cn/" target="_blank" rel="nofollow">闽ICP备14015154号-3</a> &nbsp; <a
-                    href="sitemap.xml.htm" tppabs="sitemap.xml" target="_blank" class="sitemap">网站地图</a> &nbsp; <a
-                    href="sitemap.html" tppabs="sitemap.html" target="_blank" class="sitemap">站点地图</a></p>
+        <p><a href=""target="_blank" rel="nofollow">闽ICP备14015154号-3</a> &nbsp; <a href="sitemap.xml.htm" target="_blank" class="sitemap">网站地图</a> &nbsp; <a href="sitemap.html" tppabs="sitemap.html" target="_blank" class="sitemap">站点地图</a></p>
     </div>
     <div id="gotop"><a class="gotop"></a></div>
 </footer>
